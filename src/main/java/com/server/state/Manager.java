@@ -1,7 +1,6 @@
 package com.server.state;
 
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelId;
 import io.netty.util.internal.ConcurrentSet;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,7 +18,7 @@ public class Manager {
         return manager;
     }
 
-    public ChatRoom joinChatRoom(User user,ChannelHandlerContext ctx, String name)
+    public ChatRoom joinChatRoom(String username,ChannelHandlerContext ctx, String name)
     {
         ChatRoom chatRoom=null;
         if(chatRoomConcurrentHashMap.containsKey(name))
@@ -27,7 +26,7 @@ public class Manager {
         else
             chatRoom=new ChatRoom(name);
         chatRoomConcurrentHashMap.put(name,chatRoom);
-        chatRoom.addUser(user.getUserName(),ctx.channel());
+        chatRoom.addUser(username,ctx.channel());
         return chatRoom;
     }
 
@@ -36,7 +35,7 @@ public class Manager {
         return chatRoomConcurrentHashMap;
     }
 
-    public boolean userExists(String name,ChannelId channelId)
+    public boolean userExists(String name)
     {
         if(userConcurrentSet.contains(name))
             return true;

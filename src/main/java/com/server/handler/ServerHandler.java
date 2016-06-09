@@ -103,7 +103,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     public void firstLogin(ChannelHandlerContext ctx, String msg) {
-        if (MANAGER.userExists(msg, ctx.channel().id()))
+        if (MANAGER.userExists(msg))
             ctx.writeAndFlush("NAME ALREADY IN USE! REENTER LOGIN NAME:");
         else {
             user = new User(msg);
@@ -113,7 +113,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
     }
 
     public void joinChatRoom(ChannelHandlerContext ctx, String msg) {
-        ChatRoom chatRoom = MANAGER.joinChatRoom(user, ctx, msg.split(" ", 2)[1].trim());
+        ChatRoom chatRoom = MANAGER.joinChatRoom(user.getUserName(), ctx, msg.split(" ", 2)[1].trim());
         user.addChatRoom(chatRoom);
         chatRoom.addUser(user.getUserName(), ctx.channel());
         ctx.writeAndFlush("ENTERING CHAT ROOM: " + chatRoom.getName() + "\n");
