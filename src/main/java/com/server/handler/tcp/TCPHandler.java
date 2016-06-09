@@ -30,7 +30,7 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
 
         if (user == null) {
             msg = msg.toLowerCase().trim();
-            if (msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave"))
+            if (msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave") || msg.equals("/quit"))
                 UTIL.write(ctx, "ENTER LOGIN NAME FIRST!",false);
             else if(msg.trim().length()==0)
                 UTIL.write(ctx,"LOGIN NAME CANNOT BE EMPTY!",false);
