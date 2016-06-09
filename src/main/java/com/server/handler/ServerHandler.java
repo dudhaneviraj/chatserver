@@ -67,7 +67,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
         if ("/quit".equals(msg.toLowerCase().trim())) {
             leaveChatRoom(ctx);
             MANAGER.removeUser(user.getUserName());
-            ctx.writeAndFlush("BYE!");
+            ctx.writeAndFlush("BYE!\n");
             ctx.close();
             return;
         }
