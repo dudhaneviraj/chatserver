@@ -13,7 +13,7 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 public class Main{
 
-    static final int PORT = Integer.parseInt(System.getProperty("port", "8992"));
+    static final int PORT = Integer.parseInt(System.getProperty("port", "9000"));
     public static void main(String[] args) throws Exception {
         SelfSignedCertificate ssc = new SelfSignedCertificate();
         SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey())
