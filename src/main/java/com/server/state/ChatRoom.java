@@ -13,15 +13,13 @@ public class ChatRoom {
 
     private String name;
 
-
     final ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
-    final ConcurrentSet<String> userSet=new ConcurrentSet<>();
+    final ConcurrentSet<String> userSet = new ConcurrentSet<>();
 
     public ChatRoom(String name) {
         this.name = name;
     }
-
 
     public String getName() {
         return name;
@@ -31,22 +29,19 @@ public class ChatRoom {
         return channelGroup;
     }
 
-
-    public void addUser(String username,Channel channel) {
-        if(!userSet.contains(username)) {
+    public void addUser(String username, Channel channel) {
+        if (!userSet.contains(username)) {
             userSet.add(username);
             channelGroup.add(channel);
         }
     }
 
-    public void removeUser(String username,Channel channel) {
+    public void removeUser(String username, Channel channel) {
         userSet.remove(username);
         channelGroup.remove(channel);
     }
 
-
-    public ConcurrentSet<String> getChatRoomUsers()
-    {
+    public ConcurrentSet<String> getChatRoomUsers() {
         return userSet;
     }
 }

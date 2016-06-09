@@ -9,8 +9,6 @@ public class Manager {
 
     ConcurrentHashMap<String, ChatRoom> chatRoomConcurrentHashMap = new ConcurrentHashMap<>();
 
-    ConcurrentHashMap<String, User> userConcurrentHashMap = new ConcurrentHashMap<>();
-
     ConcurrentSet<String> userConcurrentSet =new ConcurrentSet<>();
 
     private static Manager manager = new Manager();
@@ -20,16 +18,6 @@ public class Manager {
     public static Manager getInstance(){
         return manager;
     }
-
-    public ChatRoom createChatRoom(String name)
-    {
-            if(chatRoomConcurrentHashMap.containsKey(name))
-                return chatRoomConcurrentHashMap.get(name);
-            ChatRoom chatRoom=new ChatRoom(name);
-            chatRoomConcurrentHashMap.put(name,chatRoom);
-            return chatRoom;
-    }
-
 
     public ChatRoom joinChatRoom(User user,ChannelHandlerContext ctx, String name)
     {

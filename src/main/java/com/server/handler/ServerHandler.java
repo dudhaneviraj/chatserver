@@ -128,7 +128,7 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
             broadCast(ctx, "GOTTA GO!");
             broadCastMessage(ctx, "* USER HAS LEFT CHAT: " + user.getUserName());
             user.getChatRoom().removeUser(user.getUserName(), ctx.channel());
-            user.setChatRoom(null);
+            user.leaveChatRoom();
         }
     }
 
