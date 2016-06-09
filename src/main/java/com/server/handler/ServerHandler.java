@@ -100,7 +100,6 @@ public class ServerHandler extends SimpleChannelInboundHandler<String> {
             MANAGER.removeUser(user.getUserName());
         }
         ctx.fireChannelInactive();
-        System.out.println("Inactive!");
     }
 
     public void firstLogin(ChannelHandlerContext ctx, String msg) {
