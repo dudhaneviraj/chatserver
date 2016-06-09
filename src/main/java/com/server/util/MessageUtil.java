@@ -158,7 +158,7 @@ public class MessageUtil {
 
         chatRoomConcurrentHashMap.entrySet()
                 .forEach(
-                        p -> write(ctx,p.getKey() + " (" +(p.getValue().getWebChannels().size()+p.getValue().getTCPChannels().size()) + ")" ,isWeb)
+                        p -> write(ctx,"* "+p.getKey() + " (" +(p.getValue().getWebChannels().size()+p.getValue().getTCPChannels().size()) + ")" ,isWeb)
                 );
         write(ctx,"END OF LIST.",isWeb);
     }
