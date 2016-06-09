@@ -9,21 +9,17 @@ import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 public class Main extends Application<Config> {
 
-    static final int PORT = 9000;
 
     public static void main(String[] args) throws Exception {
-        new Main().run("server","config.yml");
+        new Main().run(new String[]{"server","config.yml"});
     }
 
 
     @Override
     public String getName() {
-        return "hello-world";
+        return "Chat-Server";
     }
 
     @Override
@@ -34,8 +30,10 @@ public class Main extends Application<Config> {
         bootstrap.addBundle(new AssetsBundle("/css", "/css", "/","css"));
 
     }
+
     @Override
     public void run(Config config, Environment environment) throws Exception {
+
         IEvent webIEvent= WebEvent.getEvent();
         webIEvent.build(config);
         environment.lifecycle().manage(webIEvent);

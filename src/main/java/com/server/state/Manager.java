@@ -10,8 +10,15 @@ public class Manager {
 
     ConcurrentSet<String> userConcurrentSet =new ConcurrentSet<>();
 
+    private static Manager MANAGER=new Manager();
 
-    public ChatRoom joinChatRoom(String username,ChannelHandlerContext ctx, String name)
+    private Manager()
+    {}
+    public static Manager getInstance(){
+        return MANAGER;
+    }
+
+    public ChatRoom joinChatRoom(String username,ChannelHandlerContext ctx, String name,boolean isWeb)
     {
         ChatRoom chatRoom=null;
         if(chatRoomConcurrentHashMap.containsKey(name))
@@ -19,7 +26,7 @@ public class Manager {
         else
             chatRoom=new ChatRoom(name);
         chatRoomConcurrentHashMap.put(name,chatRoom);
-        chatRoom.addUser(username,ctx.channel());
+        chatRoom.addUser(username,ctx.channel(),isWeb);
         return chatRoom;
     }
 

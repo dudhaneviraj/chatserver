@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
-    static final Manager MANAGER = new Manager();
+    static final Manager MANAGER = Manager.getInstance();
 
     private static final Logger logger = LoggerFactory.getLogger(WebHandler.class);
 
@@ -28,7 +28,7 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
     public void channelActive(final ChannelHandlerContext ctx) throws Exception {
             ctx.writeAndFlush(new TextWebSocketFrame(
                     "WELCOME TO " + InetAddress.getLocalHost().getHostName() + " CHAT SERVER!\n"));
-            ctx.writeAndFlush(new TextWebSocketFrame("LOGIN NAME:"));
+            ctx.writeAndFlush(new TextWebSocketFrame("LOGIN NAME?"));
    }
 
     @Override
@@ -47,9 +47,9 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
         if (user == null) {
             msg=msg.toLowerCase().trim();
             if(msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave"))
-                UTIL.write(ctx,"ENTER LOGIN NAME FIRST!");
+                UTIL.write(ctx,"ENTER LOGIN NAME FIRST!",true);
             else if(msg.trim().length()==0)
-                UTIL.write(ctx,"LOGIN NAME CANNOT BE EMPTY!");
+                UTIL.write(ctx,"LOGIN NAME CANNOT BE EMPTY!",true);
             else
                 UTIL.firstLogin(this, ctx, msg);
             return;
@@ -70,13 +70,13 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
         if ("/quit".equals(msg.toLowerCase().trim())) {
             UTIL.leaveChatRoom(user, ctx);
             MANAGER.removeUser(user.getUserName());
-            UTIL.write(ctx, "BYE!\n");
+            UTIL.write(ctx, "BYE!\n",true);
             ctx.close();
             return;
         }
 
         if (user.getChatRoom() == null) {
-            UTIL.write(ctx, "SELECT CHAT ROOM FIRST!\n");
+            UTIL.write(ctx, "SELECT CHAT ROOM FIRST!\n",true);
             return;
         }
 

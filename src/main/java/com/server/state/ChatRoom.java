@@ -10,7 +10,9 @@ public class ChatRoom {
 
     private String name;
 
-    final ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    final ChannelGroup webChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+
+    final ChannelGroup tcpChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     final ConcurrentSet<String> userSet = new ConcurrentSet<>();
 
@@ -22,20 +24,31 @@ public class ChatRoom {
         return name;
     }
 
-    public ChannelGroup getChannels() {
-        return channelGroup;
+    public ChannelGroup getWebChannels() {
+        return webChannelGroup;
     }
 
-    public void addUser(String username, Channel channel) {
+    public ChannelGroup getTCPChannels() {
+        return tcpChannelGroup;
+    }
+
+    public void addUser(String username, Channel channel,boolean isWeb) {
         if (!userSet.contains(username)) {
             userSet.add(username);
-            channelGroup.add(channel);
+            if(isWeb)
+                webChannelGroup.add(channel);
+            else
+                tcpChannelGroup.add(channel);
         }
     }
 
-    public void removeUser(String username, Channel channel) {
+
+    public void removeUser(String username, Channel channel,boolean isWeb) {
         userSet.remove(username);
-        channelGroup.remove(channel);
+        if(isWeb)
+            webChannelGroup.remove(channel);
+        else
+            tcpChannelGroup.remove(channel);
     }
 
     public ConcurrentSet<String> getChatRoomUsers() {
