@@ -1,37 +1,48 @@
 package com.server;
 
-import com.server.handler.ServerInitializer;
-import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.EventLoopGroup;
-import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
-import io.netty.handler.ssl.SslContext;
-import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.SelfSignedCertificate;
+import com.server.config.Config;
+import com.server.event.IEvent;
+import com.server.event.TCPEvent;
+import com.server.event.WebEvent;
+import io.dropwizard.Application;
+import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.setup.Bootstrap;
+import io.dropwizard.setup.Environment;
 
-public class Main {
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class Main extends Application<Config> {
 
     static final int PORT = 9000;
 
     public static void main(String[] args) throws Exception {
-        SelfSignedCertificate ssc = new SelfSignedCertificate();
-        SslContext sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey())
-                .build();
-        EventLoopGroup bossGroup = new NioEventLoopGroup(1);
-        EventLoopGroup workerGroup = new NioEventLoopGroup();
-        try {
-            ServerBootstrap b = new ServerBootstrap();
-            b.group(bossGroup, workerGroup)
-                    .channel(NioServerSocketChannel.class)
-                    .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new ServerInitializer(sslCtx, false));
-            b.bind(PORT).sync().channel().closeFuture().sync();
-        } finally {
-            bossGroup.shutdownGracefully();
-            workerGroup.shutdownGracefully();
-        }
+        new Main().run("server","config.yml");
     }
-    
+
+
+    @Override
+    public String getName() {
+        return "hello-world";
+    }
+
+    @Override
+    public void initialize(Bootstrap<Config> bootstrap) {
+        // Enable variable substitution with environment variables
+        bootstrap.addBundle(new AssetsBundle("/pages", "/", "index.html","html"));
+        bootstrap.addBundle(new AssetsBundle("/js", "/js", "/","js"));
+        bootstrap.addBundle(new AssetsBundle("/css", "/css", "/","css"));
+
+    }
+    @Override
+    public void run(Config config, Environment environment) throws Exception {
+        IEvent webIEvent= WebEvent.getEvent();
+        webIEvent.build(config);
+        environment.lifecycle().manage(webIEvent);
+
+        IEvent tcpIEvent= TCPEvent.getEvent();
+        tcpIEvent.build(config);
+        environment.lifecycle().manage(tcpIEvent);
+
+    }
 }

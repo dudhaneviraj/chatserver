@@ -10,13 +10,6 @@ public class Manager {
 
     ConcurrentSet<String> userConcurrentSet =new ConcurrentSet<>();
 
-    private static Manager manager = new Manager();
-
-    private Manager() {}
-
-    public static Manager getInstance(){
-        return manager;
-    }
 
     public ChatRoom joinChatRoom(String username,ChannelHandlerContext ctx, String name)
     {
