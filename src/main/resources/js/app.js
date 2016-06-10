@@ -13,7 +13,7 @@ var ip = window.location.hostname;
 address = ip + ":8000"
 
 
-socket = new WebSocket("ws://" + ip + ":8000" + "/websocket");
+socket = new WebSocket("ws://" + ip + ":8000" + "/socket");
 
 
 socket.onerror = function (error) {
@@ -69,7 +69,7 @@ openBtn.onclick = function (e) {
 
     socket.close();
 
-    socket = new WebSocket("ws://" + ip + ":8000" + "/websocket");
+    socket = new WebSocket("ws://" + ip + ":8000" + "/socket");
 
 
     // Handle any errors that occur.

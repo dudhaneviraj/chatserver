@@ -35,11 +35,11 @@ public class Main extends Application<Config> {
     public void run(Config config, Environment environment) throws Exception {
 
         IEvent webIEvent= WebEvent.getEvent();
-        webIEvent.build(config);
+        webIEvent.build(config,false);
         environment.lifecycle().manage(webIEvent);
 
         IEvent tcpIEvent= TCPEvent.getEvent();
-        tcpIEvent.build(config);
+        tcpIEvent.build(config,false);
         environment.lifecycle().manage(tcpIEvent);
 
     }

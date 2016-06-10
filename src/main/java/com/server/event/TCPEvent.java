@@ -13,6 +13,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -20,6 +22,7 @@ import java.util.concurrent.Executors;
 public class TCPEvent implements IEvent,Runnable{
     private ExecutorService executorService= Executors.newSingleThreadExecutor();
 
+    boolean sslEnabled=false;
     private TCPEvent(){}
 
     private static final TCPEvent tcpEvent=new TCPEvent();
@@ -28,9 +31,10 @@ public class TCPEvent implements IEvent,Runnable{
     {
         return tcpEvent;
     }
-    @Override
-    public void build(Config config) {
 
+    @Override
+    public void build(Config config, boolean sslEnabled) {
+        this.sslEnabled=sslEnabled;
     }
 
     @Override
@@ -46,6 +50,13 @@ public class TCPEvent implements IEvent,Runnable{
     @Override
     public void run() {
         try{
+            final SslContext sslCtx;
+            if(sslEnabled) {
+                SelfSignedCertificate ssc = new SelfSignedCertificate();
+                sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+            }else
+                sslCtx = null;
+
             EventLoopGroup bossGroup = new NioEventLoopGroup(1);
             EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
@@ -53,7 +64,7 @@ public class TCPEvent implements IEvent,Runnable{
                 b.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .handler(new LoggingHandler(LogLevel.INFO))
-                        .childHandler(new TCPServerInitializer());
+                        .childHandler(new TCPServerInitializer(sslCtx));
 
                 Channel ch = b.bind(9000).sync().channel();
                 ch.closeFuture().sync();

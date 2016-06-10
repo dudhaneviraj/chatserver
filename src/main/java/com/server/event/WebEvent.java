@@ -10,6 +10,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.SelfSignedCertificate;
 
 
 import java.util.concurrent.ExecutorService;
@@ -21,14 +23,17 @@ public class WebEvent implements IEvent,Runnable {
 
     private WebEvent(){}
 
+    boolean sslEnabled=false;
+
     private static final WebEvent webEvent=new WebEvent();
     public static WebEvent getEvent()
     {
         return webEvent;
     }
-    @Override
-    public void build(Config config) {
 
+    @Override
+    public void build(Config config,boolean sslEnabled) {
+        this.sslEnabled=sslEnabled;
     }
 
     @Override
@@ -44,6 +49,14 @@ public class WebEvent implements IEvent,Runnable {
     @Override
     public void run() {
         try{
+
+            final SslContext sslCtx;
+            if(sslEnabled) {
+                SelfSignedCertificate ssc = new SelfSignedCertificate();
+                sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
+            }else
+                  sslCtx = null;
+
             EventLoopGroup bossGroup = new NioEventLoopGroup(1);
             EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
@@ -51,7 +64,7 @@ public class WebEvent implements IEvent,Runnable {
                 b.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .handler(new LoggingHandler(LogLevel.INFO))
-                        .childHandler(new WebServerInitializer());
+                        .childHandler(new WebServerInitializer(sslCtx));
 
                 Channel ch = b.bind(8000).sync().channel();
                 ch.closeFuture().sync();
