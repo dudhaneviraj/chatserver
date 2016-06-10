@@ -6,7 +6,7 @@ var socketStatus = document.getElementById('status');
 var closeBtn = document.getElementById('close');
 var openBtn = document.getElementById('open');
 var sendBtn = document.getElementById('send');
-
+var clearBtn = document.getElementById('clear');
 
 var ip = window.location.hostname;
 
@@ -103,6 +103,14 @@ openBtn.onclick = function (e) {
 
     return true;
 };
+
+clearBtn.onclick = function (e) {
+    e.preventDefault();
+    document.getElementById("messages").innerHTML = "";
+    return false;
+};
+
+
 
 
 function isKeyPressed(event) {
