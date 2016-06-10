@@ -30,7 +30,7 @@ public class MessageUtil {
         if(web)
             ctx.writeAndFlush(new TextWebSocketFrame(msg));
         else
-            ctx.writeAndFlush(msg+newLine);
+            ctx.writeAndFlush(msg+"\n");
     }
 
     public void write(Channel ctx, String msg,boolean web)
@@ -38,7 +38,7 @@ public class MessageUtil {
         if(web)
             ctx.writeAndFlush(new TextWebSocketFrame(msg));
         else
-            ctx.writeAndFlush(msg+newLine);
+            ctx.writeAndFlush(msg+"\n");
     }
 
     public void firstLogin(TCPHandler tcpHandler, ChannelHandlerContext ctx, String msg) {
