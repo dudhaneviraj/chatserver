@@ -93,6 +93,7 @@ public class MessageUtil {
             broadCast(user,ctx, "GOTTA GO!");
             broadCastMessage(user,ctx, "* USER HAS LEFT CHAT: " + user.getUserName()+"\n");
             user.getChatRoom().removeUser(user.getUserName(), ctx.channel(),isWeb);
+            MANAGER.removeChatRoom(user.getChatRoom().getName());
             user.leaveChatRoom();
         }
     }

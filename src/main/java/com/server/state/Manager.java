@@ -42,6 +42,13 @@ public class Manager {
         return false;
     }
 
+    public void removeChatRoom(String name)
+    {
+        ChatRoom chatRoom = chatRoomConcurrentHashMap.get(name);
+        if(chatRoom!=null)
+            if(chatRoom.getWebChannels().size()+chatRoom.getTCPChannels().size()==0)
+                chatRoomConcurrentHashMap.remove(name);
+    }
     public void addUser(String name)
     {
         userConcurrentSet.add(name);
