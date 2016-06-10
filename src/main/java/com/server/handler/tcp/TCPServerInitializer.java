@@ -20,8 +20,8 @@ public class TCPServerInitializer extends ChannelInitializer<SocketChannel> {
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
-            if(sslCtx!=null)
-                pipeline.addLast(sslCtx.newHandler(ch.alloc()));
+        if (sslCtx != null)
+            pipeline.addLast(sslCtx.newHandler(ch.alloc()));
         pipeline.addLast(new DelimiterBasedFrameDecoder(8192, Delimiters.lineDelimiter()));
         pipeline.addLast(new StringDecoder());
         pipeline.addLast(new StringEncoder());

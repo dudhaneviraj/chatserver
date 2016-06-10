@@ -13,27 +13,25 @@ import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.SelfSignedCertificate;
 
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 
-public class WebEvent implements IEvent,Runnable {
-    private ExecutorService executorService= Executors.newSingleThreadExecutor();
+public class WebEvent implements IEvent, Runnable {
+    private static final WebEvent webEvent = new WebEvent();
+    boolean sslEnabled = false;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    private WebEvent(){}
+    private WebEvent() {
+    }
 
-    boolean sslEnabled=false;
-
-    private static final WebEvent webEvent=new WebEvent();
-    public static WebEvent getEvent()
-    {
+    public static WebEvent getEvent() {
         return webEvent;
     }
 
     @Override
-    public void build(Config config,boolean sslEnabled) {
-        this.sslEnabled=sslEnabled;
+    public void build(Config config, boolean sslEnabled) {
+        this.sslEnabled = sslEnabled;
     }
 
     @Override
@@ -48,14 +46,14 @@ public class WebEvent implements IEvent,Runnable {
 
     @Override
     public void run() {
-        try{
+        try {
 
             final SslContext sslCtx;
-            if(sslEnabled) {
+            if (sslEnabled) {
                 SelfSignedCertificate ssc = new SelfSignedCertificate();
                 sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
-            }else
-                  sslCtx = null;
+            } else
+                sslCtx = null;
 
             EventLoopGroup bossGroup = new NioEventLoopGroup(1);
             EventLoopGroup workerGroup = new NioEventLoopGroup();
@@ -73,8 +71,8 @@ public class WebEvent implements IEvent,Runnable {
                 workerGroup.shutdownGracefully();
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
 //            e.printStackTrace();
         }
-     }
+    }
 }

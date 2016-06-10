@@ -13,7 +13,7 @@ public class Main extends Application<Config> {
 
 
     public static void main(String[] args) throws Exception {
-        new Main().run(new String[]{"server","config.yml"});
+        new Main().run(new String[]{"server", "config.yml"});
     }
 
 
@@ -24,22 +24,22 @@ public class Main extends Application<Config> {
 
     @Override
     public void initialize(Bootstrap<Config> bootstrap) {
-        // Enable variable substitution with environment variables
-        bootstrap.addBundle(new AssetsBundle("/pages", "/", "index.html","html"));
-        bootstrap.addBundle(new AssetsBundle("/js", "/js", "/","js"));
-        bootstrap.addBundle(new AssetsBundle("/css", "/css", "/","css"));
 
+        bootstrap.addBundle(new AssetsBundle("/pages", "/", "index.html", "html"));
+        bootstrap.addBundle(new AssetsBundle("/js", "/js", "/", "js"));
+        bootstrap.addBundle(new AssetsBundle("/css", "/css", "/", "css"));
+        
     }
 
     @Override
     public void run(Config config, Environment environment) throws Exception {
 
-        IEvent webIEvent= WebEvent.getEvent();
-        webIEvent.build(config,false);
+        IEvent webIEvent = WebEvent.getEvent();
+        webIEvent.build(config, false);
         environment.lifecycle().manage(webIEvent);
 
-        IEvent tcpIEvent= TCPEvent.getEvent();
-        tcpIEvent.build(config,false);
+        IEvent tcpIEvent = TCPEvent.getEvent();
+        tcpIEvent.build(config, false);
         environment.lifecycle().manage(tcpIEvent);
 
     }

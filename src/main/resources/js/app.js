@@ -5,21 +5,17 @@ var messagesList = document.getElementById('messages');
 var socketStatus = document.getElementById('status');
 var closeBtn = document.getElementById('close');
 var openBtn = document.getElementById('open');
-var sendBtn = document.getElementById('send');
 var clearBtn = document.getElementById('clear');
 
 var ip = window.location.hostname;
 
 address = ip + ":8000"
 
-
 socket = new WebSocket("ws://" + ip + ":8000" + "/socket");
-
 
 socket.onerror = function (error) {
     console.log('WebSocket Error: ' + error);
 };
-
 
 socket.onopen = function (event) {
     socketStatus.innerHTML = 'Connected to: ' + address;
@@ -27,18 +23,15 @@ socket.onopen = function (event) {
     messagesList.innerHTML += '<li class="received"><span>Received:</span>' + "LOGIN NAME?" + '</li>';
 };
 
-
 socket.onmessage = function (event) {
     var message = event.data;
-    messagesList.innerHTML += '<li class="received"><span>Received:</span>' +
-        message + '</li>';
+    messagesList.innerHTML += '<li class="received"><span>Received:</span>' + message + '</li>';
 };
 
 socket.onclose = function (event) {
     socketStatus.innerHTML = 'Disconnected from WebSocket.';
     socketStatus.className = 'closed';
 };
-
 
 form.onsubmit = function (e) {
     e.preventDefault();
@@ -47,8 +40,7 @@ form.onsubmit = function (e) {
 
     socket.send(message);
 
-    messagesList.innerHTML += '<li class="sent"><span>Sent:</span>' + message +
-        '</li>';
+    messagesList.innerHTML += '<li class="sent"><span>Sent:</span>' + message + '</li>';
 
     messageField.value = '';
 
@@ -71,14 +63,10 @@ openBtn.onclick = function (e) {
 
     socket = new WebSocket("ws://" + ip + ":8000" + "/socket");
 
-
-    // Handle any errors that occur.
     socket.onerror = function (error) {
         console.log('WebSocket Error: ' + error);
     };
 
-
-    // Show a connected message when the WebSocket is opened.
     socket.onopen = function (event) {
         socketStatus.innerHTML = 'Connected to: ' + address;
         socketStatus.className = 'open';
@@ -86,16 +74,12 @@ openBtn.onclick = function (e) {
 
     };
 
-
-    // Handle messages sent by the server.
     socket.onmessage = function (event) {
         var message = event.data;
         messagesList.innerHTML += '<li class="received"><span>Received:</span>' +
             message + '</li>';
     };
 
-
-    // Show a disconnected message when the WebSocket is closed.
     socket.onclose = function (event) {
         socketStatus.innerHTML = 'Disconnected from WebSocket.';
         socketStatus.className = 'closed';
@@ -111,8 +95,6 @@ clearBtn.onclick = function (e) {
 };
 
 
-
-
 function isKeyPressed(event) {
     if (event.ctrlKey && event.keyCode == 13) {
         event.preventDefault();
@@ -121,8 +103,7 @@ function isKeyPressed(event) {
         if (message.length > 0) {
             socket.send(message);
 
-            messagesList.innerHTML += '<li class="sent"><span>Sent:</span>' + message +
-                '</li>';
+            messagesList.innerHTML += '<li class="sent"><span>Sent:</span>' + message + '</li>';
 
             messageField.value = '';
 

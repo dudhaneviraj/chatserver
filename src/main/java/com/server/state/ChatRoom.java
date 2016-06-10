@@ -8,13 +8,10 @@ import io.netty.util.internal.ConcurrentSet;
 
 public class ChatRoom {
 
-    private String name;
-
     final ChannelGroup webChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-
     final ChannelGroup tcpChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-
     final ConcurrentSet<String> userSet = new ConcurrentSet<>();
+    private String name;
 
     public ChatRoom(String name) {
         this.name = name;
@@ -32,10 +29,10 @@ public class ChatRoom {
         return tcpChannelGroup;
     }
 
-    public void addUser(String username, Channel channel,boolean isWeb) {
+    public void addUser(String username, Channel channel, boolean isWeb) {
         if (!userSet.contains(username)) {
             userSet.add(username);
-            if(isWeb)
+            if (isWeb)
                 webChannelGroup.add(channel);
             else
                 tcpChannelGroup.add(channel);
@@ -43,9 +40,9 @@ public class ChatRoom {
     }
 
 
-    public void removeUser(String username, Channel channel,boolean isWeb) {
+    public void removeUser(String username, Channel channel, boolean isWeb) {
         userSet.remove(username);
-        if(isWeb)
+        if (isWeb)
             webChannelGroup.remove(channel);
         else
             tcpChannelGroup.remove(channel);

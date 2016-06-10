@@ -13,16 +13,13 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
 
 
     static final Manager MANAGER = Manager.getInstance();
-
-    User user = null;
-
     final MessageUtil UTIL = new MessageUtil(false, MANAGER);
-
+    User user = null;
 
     @Override
     public void channelActive(final ChannelHandlerContext ctx) throws Exception {
-        UTIL.write(ctx,"WELCOME TO " + InetAddress.getLocalHost().getHostName() + " CHAT SERVER!",false);
-        UTIL.write(ctx,"LOGIN NAME?",false);
+        UTIL.write(ctx, "WELCOME TO " + InetAddress.getLocalHost().getHostName() + " CHAT SERVER!", false);
+        UTIL.write(ctx, "LOGIN NAME?", false);
     }
 
     @Override
@@ -31,9 +28,9 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
         if (user == null) {
             msg = msg.toLowerCase().trim();
             if (msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave") || msg.equals("/quit"))
-                UTIL.write(ctx, "ENTER LOGIN NAME FIRST!",false);
-            else if(msg.trim().length()==0)
-                UTIL.write(ctx,"LOGIN NAME CANNOT BE EMPTY!",false);
+                UTIL.write(ctx, "ENTER LOGIN NAME FIRST!", false);
+            else if (msg.trim().length() == 0)
+                UTIL.write(ctx, "LOGIN NAME CANNOT BE EMPTY!", false);
             else
                 UTIL.firstLogin(this, ctx, msg);
             return;
@@ -54,13 +51,13 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
         if ("/quit".equals(msg.toLowerCase().trim())) {
             UTIL.leaveChatRoom(user, ctx);
             MANAGER.removeUser(user.getUserName());
-            UTIL.write(ctx, "BYE!\n",false);
+            UTIL.write(ctx, "BYE!\n", false);
             ctx.close();
             return;
         }
 
         if (user.getChatRoom() == null) {
-            UTIL.write(ctx, "SELECT CHAT ROOM FIRST!",false);
+            UTIL.write(ctx, "SELECT CHAT ROOM FIRST!", false);
             return;
         }
 

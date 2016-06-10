@@ -2,9 +2,7 @@ package com.server.event;
 
 
 import com.server.config.Config;
-import com.server.handler.tcp.TCPHandler;
 import com.server.handler.tcp.TCPServerInitializer;
-import com.server.handler.web.WebServerInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.Channel;
 import io.netty.channel.EventLoopGroup;
@@ -19,22 +17,21 @@ import io.netty.handler.ssl.util.SelfSignedCertificate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class TCPEvent implements IEvent,Runnable{
-    private ExecutorService executorService= Executors.newSingleThreadExecutor();
+public class TCPEvent implements IEvent, Runnable {
+    private static final TCPEvent tcpEvent = new TCPEvent();
+    boolean sslEnabled = false;
+    private ExecutorService executorService = Executors.newSingleThreadExecutor();
 
-    boolean sslEnabled=false;
-    private TCPEvent(){}
+    private TCPEvent() {
+    }
 
-    private static final TCPEvent tcpEvent=new TCPEvent();
-
-    public static TCPEvent getEvent()
-    {
+    public static TCPEvent getEvent() {
         return tcpEvent;
     }
 
     @Override
     public void build(Config config, boolean sslEnabled) {
-        this.sslEnabled=sslEnabled;
+        this.sslEnabled = sslEnabled;
     }
 
     @Override
@@ -49,12 +46,12 @@ public class TCPEvent implements IEvent,Runnable{
 
     @Override
     public void run() {
-        try{
+        try {
             final SslContext sslCtx;
-            if(sslEnabled) {
+            if (sslEnabled) {
                 SelfSignedCertificate ssc = new SelfSignedCertificate();
                 sslCtx = SslContextBuilder.forServer(ssc.certificate(), ssc.privateKey()).build();
-            }else
+            } else
                 sslCtx = null;
 
             EventLoopGroup bossGroup = new NioEventLoopGroup(1);
@@ -73,7 +70,7 @@ public class TCPEvent implements IEvent,Runnable{
                 workerGroup.shutdownGracefully();
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
