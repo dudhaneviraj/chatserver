@@ -21,8 +21,8 @@ var prefix= "";
 var socket;
 var username="";
 
-messageInStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-download"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">';
-messageOutStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload"></span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">';
+messageInStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-download"></span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">';
+messageOutStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload"></span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">';
 messageMiddle='</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div><p>';
 messageEnd='</p></div></li></ul>';
 
@@ -87,25 +87,6 @@ clearBtn.onclick = function (e) {
     return false;
 };
 
-// function isKeyPressed(event) {
-//     if (event.ctrlKey && event.keyCode == 13) {
-//         event.preventDefault();
-//         var message = messageField.value;
-//
-//         if (message.length > 0) {
-//             socket.send(message);
-//             if(message.indexOf("/join")==0)
-//                 room=message.split(" ",2)[1].trim();
-//
-//             messagesList.innerHTML += messageOutStart+'You'+messageMiddle+message+messageEnd;
-//
-//             messageField.value = '';
-//
-//         }
-//         return false;
-//     }
-// }
-//
 
 crefresh.onclick = function (e) {
     e.preventDefault();
@@ -124,7 +105,7 @@ function renderChatrooms() {
     for(var i=0;i<parsed.length;i++)
     {
         chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
-            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'+parsed[i]+'</strong>' +
+            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+parsed[i]+'</strong>' +
             '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send'+parsed[i]+'">Join</button> </div></li>';
     }
     var classname = document.getElementsByClassName("joinClass");
@@ -199,7 +180,7 @@ function renderUsers() {
     for(var i=0;i<parsed.length;i++)
     {
         userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
-            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">'+parsed[i]+'</strong>' +
+            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+parsed[i]+'</strong>' +
             '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "'+parsed[i]+'"></div></div></li>';
     }
 
@@ -274,19 +255,18 @@ function createSocket() {
         {
             if(message.indexOf('WELCOME')==0) {
                 isLoggedIn = true;
-                renderChatrooms()
                 $("#loginModal").modal('hide')
                 socketStatus.innerHTML+='<span class="pull-right glyphicon glyphicon-user"> '+username+'</span>';
             }
             else
             {
-
                 loginStatus.innerHTML=message;
                 return;
             }
         }
         messagesList.innerHTML += messageInStart +'Incoming'+messageMiddle+ message + messageEnd;
         renderChatrooms()
+        renderUsers()
     };
 
     socket.onclose = function (event) {

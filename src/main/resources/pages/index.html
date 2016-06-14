@@ -67,7 +67,7 @@
                         <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
                                 id="openclose"></button>
                         </span>
-                        <input id="message" type="text" class="form-control input-sm"
+                        <input id="message" type="text" maxlength="300" class="form-control input-sm"
                                placeholder="Type your message here...">
                         <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary hidden" id="send">Send</button>
@@ -114,7 +114,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="chatroom">Enter Name:</label>
-                    <input type="text" class="form-control" id="chatroom">
+                    <input type="text" class="form-control" maxlength="20" id="chatroom">
                 </div>
             </div>
             <div class="modal-footer">
@@ -137,7 +137,7 @@
                 <div class="form-group">
                     <p id="loginStatus" class="text-danger"></p>
                     <label for="login">Enter Username:</label>
-                    <input type="text" class="form-control" id="login">
+                    <input type="text" class="form-control" maxlength="20" id="login">
                 </div>
             </div>
             <div class="modal-footer">

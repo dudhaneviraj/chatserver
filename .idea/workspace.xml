@@ -2,25 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/pictures/back.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/pictures/side.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/css/chat.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/js/jquery-2.1.4.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/resources/css/style.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/Main.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/util/MessageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/util/MessageUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/js/app.js" afterPath="$PROJECT_DIR$/src/main/resources/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/pages/index.html" afterPath="$PROJECT_DIR$/src/main/resources/pages/index.html" />
     </list>
@@ -45,7 +26,38 @@
     <favorites_list name="ChatServer" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="268" column="21" selection-start-line="268" selection-start-column="21" selection-end-line="268" selection-end-column="21" />
+              <folding>
+                <marker date="1465943631702" expanded="true" signature="1021:1037" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="1141:1163" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="1290:1306" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="1408:1430" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="3374:3390" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="3557:3579" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="5218:5234" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="5630:5646" ph="..." />
+                <marker date="1465943631702" expanded="true" signature="5813:5835" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -115,11 +127,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/util/MessageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/js/app.js" />
         <option value="$PROJECT_DIR$/src/main/resources/css/chat.css" />
-        <option value="$PROJECT_DIR$/src/main/resources/pages/index.html" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/resources/pages/index.html" />
+        <option value="$PROJECT_DIR$/src/main/resources/js/app.js" />
       </list>
     </option>
   </component>
@@ -224,6 +236,58 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -875,12 +939,12 @@
       <workItem from="1465941733116" duration="6000" />
       <workItem from="1465941761583" duration="295000" />
       <workItem from="1465942078494" duration="162000" />
-      <workItem from="1465942275631" duration="67000" />
+      <workItem from="1465942275631" duration="1502000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137556000" />
+    <option name="totallyTimeSpent" value="138991000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1183,24 +1247,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="278" column="40" selection-start-line="278" selection-start-column="40" selection-end-line="278" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/css/chat.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1242,6 +1292,32 @@
         <state relative-caret-position="238">
           <caret line="24" column="73" selection-start-line="24" selection-start-column="73" selection-end-line="24" selection-end-column="73" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="80" column="10" selection-start-line="80" selection-start-column="10" selection-end-line="80" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="268" column="21" selection-start-line="268" selection-start-column="21" selection-end-line="268" selection-end-column="21" />
+          <folding>
+            <marker date="1465943631702" expanded="true" signature="1021:1037" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="1141:1163" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="1290:1306" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="1408:1430" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="3374:3390" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="3557:3579" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="5218:5234" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="5630:5646" ph="..." />
+            <marker date="1465943631702" expanded="true" signature="5813:5835" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
