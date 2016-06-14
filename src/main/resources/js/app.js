@@ -176,7 +176,7 @@ function renderUsers() {
 
     userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-globe">' +
         '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Group</strong>' +
-        '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = ""></div></div></li>';
+        '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" checked></div></div></li>';
     for(var i=0;i<parsed.length;i++)
     {
         userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
