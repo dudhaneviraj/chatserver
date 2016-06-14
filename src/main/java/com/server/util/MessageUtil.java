@@ -7,6 +7,7 @@ import com.server.state.Manager;
 import com.server.state.User;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelId;
 import io.netty.channel.group.ChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 
@@ -81,8 +82,8 @@ public class MessageUtil {
         user.addChatRoom(chatRoom);
         chatRoom.addUser(user.getUserName(), ctx.channel(), isWeb);
         write(ctx, "ENTERING CHAT ROOM: " + chatRoom.getName() + "\n", isWeb);
-        getUsers(user, ctx);
-        write(ctx, "END OF LIST.\n", isWeb);
+//        getUsers(user, ctx);
+//        write(ctx, "END OF LIST.\n", isWeb);
         broadCastMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
     }
 
@@ -136,9 +137,35 @@ public class MessageUtil {
         });
     }
 
+    public void messageUser(User user,String username,ChannelHandlerContext ctx,String msg)
+    {
+        ChannelId id=user.getChatRoom().getChannelId(username);
+
+        ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
+
+        channelGroup.stream().forEach(c -> {
+                if(c.id().asLongText().equals(id.asLongText()))
+                    if (c != ctx.channel())
+                        write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg + '\n', true);
+                    else
+                        write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] [TO USER:"+username+"]" + msg + '\n', false);
+        });
+
+        channelGroup = user.getChatRoom().getTCPChannels();
+
+        channelGroup.stream().forEach(c -> {
+            if(c.id().asLongText().equals(id.asLongText()))
+                if (c != ctx.channel())
+                    write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg + '\n', false);
+                else
+                    write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] [TO USER:"+username+"]" + msg + '\n', false);
+        });
+    }
+
     public void getUsers(User user, ChannelHandlerContext ctx) {
         user.getChatRoom().getChatRoomUsers().forEach(p ->
         {
+            System.out.println(p);
             if (user.getUserName().equals(p))
                 write(ctx, "* " + p + " (** THIS IS YOU)", isWeb);
             else

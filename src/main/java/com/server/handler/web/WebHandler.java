@@ -39,6 +39,12 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
         if (user == null) {
             msg = msg.toLowerCase().trim();
+            if ("/quit".equals(msg.toLowerCase().trim())) {
+                UTIL.write(ctx, "BYE!\n", false);
+                ctx.close();
+                return;
+            }
+
             if (msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave") || msg.equals("/quit"))
                 UTIL.write(ctx, "ENTER LOGIN NAME FIRST!", true);
             else if (msg.trim().length() == 0)
@@ -48,6 +54,13 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
             return;
         }
 
+        if ("/quit".equals(msg.toLowerCase().trim())) {
+            UTIL.leaveChatRoom(user, ctx);
+            MANAGER.removeUser(user.getUserName());
+            UTIL.write(ctx, "BYE!\n", true);
+            ctx.close();
+            return;
+        }
         if (msg.toLowerCase().trim().equals("/rooms")) {
             UTIL.getChatRooms(ctx);
             return;
@@ -59,14 +72,6 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
             return;
         }
 
-        if ("/quit".equals(msg.toLowerCase().trim())) {
-            UTIL.leaveChatRoom(user, ctx);
-            MANAGER.removeUser(user.getUserName());
-            UTIL.write(ctx, "BYE!\n", true);
-            ctx.close();
-            return;
-        }
-
         if (user.getChatRoom() == null) {
             UTIL.write(ctx, "SELECT CHAT ROOM FIRST!\n", true);
             return;
@@ -74,6 +79,14 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
         if (msg.toLowerCase().trim().equals("/leave")) {
             UTIL.leaveChatRoom(user, ctx);
+            return;
+        }
+
+        if (msg.toLowerCase().trim().startsWith("/user")) {
+            String[] data=msg.split(" ",3);
+            if (data.length!=3)
+                return;
+            UTIL.messageUser(user,data[1],ctx,data[2]);
             return;
         }
 

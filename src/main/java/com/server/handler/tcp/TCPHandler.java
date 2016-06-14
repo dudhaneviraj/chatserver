@@ -27,24 +27,17 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
 
         if (user == null) {
             msg = msg.toLowerCase().trim();
+            if ("/quit".equals(msg.toLowerCase().trim())) {
+                UTIL.write(ctx, "BYE!\n", false);
+                ctx.close();
+                return;
+            }
             if (msg.equals("/rooms") || msg.startsWith("/join") || msg.equals("/leave") || msg.equals("/quit"))
                 UTIL.write(ctx, "ENTER LOGIN NAME FIRST!", false);
             else if (msg.trim().length() == 0)
                 UTIL.write(ctx, "LOGIN NAME CANNOT BE EMPTY!", false);
             else
                 UTIL.firstLogin(this, ctx, msg);
-            return;
-        }
-
-        if (msg.toLowerCase().trim().equals("/rooms")) {
-            UTIL.getChatRooms(ctx);
-            return;
-        }
-
-        if (msg.toLowerCase().trim().startsWith("/join") && !msg.toLowerCase().trim().endsWith("/join")) {
-            UTIL.leaveChatRoom(user, ctx);
-//            leaveChatRoom(ctx);
-            UTIL.joinChatRoom(this, ctx, msg);
             return;
         }
 
@@ -56,6 +49,19 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
             return;
         }
 
+        if (msg.toLowerCase().trim().equals("/rooms")) {
+            UTIL.getChatRooms(ctx);
+            return;
+        }
+
+        if (msg.toLowerCase().trim().startsWith("/join") && !msg.toLowerCase().trim().endsWith("/join")) {
+            UTIL.leaveChatRoom(user, ctx);
+            UTIL.joinChatRoom(this, ctx, msg);
+            return;
+        }
+
+
+
         if (user.getChatRoom() == null) {
             UTIL.write(ctx, "SELECT CHAT ROOM FIRST!", false);
             return;
@@ -66,8 +72,20 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
             return;
         }
 
+        if (msg.toLowerCase().trim().startsWith("/user")) {
+            String[] data=msg.split(" ",3);
+            if (data.length!=3)
+                return;
+            System.out.println(data[1]);
+            System.out.println(data[2]);
+            UTIL.messageUser(user,data[1],ctx,data[2]);
+            return;
+        }
+
+
         UTIL.broadCast(user, ctx, msg);
     }
+
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {

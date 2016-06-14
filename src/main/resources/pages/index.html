@@ -1,30 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
     <title>Chat Server</title>
-    <link rel="stylesheet" href="/css/style.css">
-
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!--[if IE]>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <![endif]-->
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/chat.css" rel="stylesheet"/>
 </head>
-<body>
+<body background="/pictures/back.png">
 
-<div id="page-wrapper">
-    <h1>Chat Server</h1>
+<div class="row">
 
-    <div id="status">Connecting...</div>
+    <div class="col-sm-1">
+    </div>
 
-    <ul id="messages"></ul>
+    <div class="col-sm-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Chatrooms
+            </div>
+            <div class="panel-body">
+                <ul id="chatrooms" class="chat">
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                            <button type="button" id="chatroomCreate"
+                                    class="btn btn-success glyphicon glyphicon-plus"></button>
+                    </span>
+                    <span class="input-group-btn">
+                           <button type="button" class="pull-right btn btn-default glyphicon glyphicon-refresh"
+                                   id="crefresh"></button>
+                    </span>
 
-    <form id="message-form" action="#" method="post" onkeydown="isKeyPressed(event)">
-        <textarea id="message" placeholder="Enter text ..." required></textarea>
-        <button type="submit" id="send">Send</button>
-        <button type="reset" id="clear">Clear</button>
-        <button type="submit" id="open">Connect</button>
-        <button type="button" id="close">Disconnect</button>
-        <br><br>
-        <span style="color: red; "> Press Ctrl+Enter or Ctrl+Return(MAC) To Send</span>
-    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <form id="message-form" class="form-horizontal" onkeydown="isKeyPressed(event)">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>
+                        <div class="" id="status">Connecting...</div>
+                    </strong>
+                </div>
+                <div id="scroll" class="panel-body">
+                    <ul id="messages" class="chat">
+
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
+                                id="openclose"></button>
+                        </span>
+                        <input id="message" type="text" class="form-control input-sm"
+                               placeholder="Type your message here...">
+                        <span class="input-group-btn">
+                                <button type="submit" class="btn btn-primary hidden" id="send">Send</button>
+                                <button type="reset" class="btn btn-block glyphicon glyphicon-refresh"
+                                        id="clear"></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-2">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Users</div>
+            <div class="panel-body">
+                <ul id="users" class="chat">  </ul>
+            </div>
+
+            <div class="panel-footer">
+                <div class="input-group text-center">
+                        <span class="input-group-btn">
+                             <button type="button" class="btn btn-default glyphicon glyphicon-refresh"
+                                     id="urefresh"></button>
+                        </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-1">
+    </div>
 </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Create New Chat Room</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="chatroom">Enter Name:</label>
+                    <input type="text" class="form-control" id="chatroom">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="create">Create</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Login</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <p id="loginStatus" class="text-danger"></p>
+                    <label for="login">Enter Username:</label>
+                    <input type="text" class="form-control" id="login">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 <script src="/js/app.js"></script>
+
 </body>
 </html>
