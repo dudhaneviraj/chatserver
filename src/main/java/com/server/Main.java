@@ -29,8 +29,8 @@ public class Main extends Application<Config> {
         bootstrap.addBundle(new AssetsBundle("/pages", "/", "index.html", "html"));
         bootstrap.addBundle(new AssetsBundle("/js", "/js", "/", "js"));
         bootstrap.addBundle(new AssetsBundle("/css", "/css", "/", "css"));
-        bootstrap.addBundle(new AssetsBundle("/fonts", "/fonts", "/", ""));
-        bootstrap.addBundle(new AssetsBundle("/pictures", "/pictures", "/", ""));
+        bootstrap.addBundle(new AssetsBundle("/fonts", "/fonts", "/", "*"));
+        bootstrap.addBundle(new AssetsBundle("/pictures", "/pictures", "/", "*"));
 
     }
 
