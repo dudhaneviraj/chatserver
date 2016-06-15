@@ -78,7 +78,6 @@ openCloseBtn.onclick = function (e) {
         openCloseBtn.className="btn btn-danger glyphicon glyphicon-remove-sign";
     }
     else {
-        openCloseBtn.className="btn btn-success glyphicon glyphicon-plus-sign";
         socket.close();
     }
     return false;
@@ -103,17 +102,21 @@ function renderChatrooms() {
     var data=httpGet("/api/chatRooms")
     var parsed=JSON.parse(data);
     chatRoomList.innerHTML="";
-    if(parsed.length==0)
-    {
-        chatRoomList.innerHTML += '<ul class="chat"><li class="clearfix"><p>No Chatrooms Active</p></div></li></ul>';
-    }
-    for(var i=0;i<parsed.length;i++)
-    {
+    var result = $.parseJSON(data);
+    var count=0;
+    $.each(result, function(k, v) {
         chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
-            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+parsed[i]+'</strong>' +
-            '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send'+parsed[i]+'">Join</button> </div></li>';
+            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+k+'<span class="pull-right">'+v+' Users</span></strong>' +
+            '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send'+k+'">Join</button> </div></li>';
+        count++;
+    });
+
+
+    if(count==0)
+    {
+        chatRoomList.innerHTML = '<ul class="chat"><li class="clearfix"><p>No Chatrooms Active</p></div></li></ul>';
     }
-    var classname = document.getElementsByClassName("joinClass");
+     var classname = document.getElementsByClassName("joinClass");
 
     var join = function(e) {
         e.preventDefault();
@@ -285,6 +288,7 @@ function createSocket() {
         username="";
         room="";
         prefix="";
+        openCloseBtn.className="btn btn-success glyphicon glyphicon-plus-sign";
     };
 }
 
