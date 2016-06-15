@@ -39,6 +39,11 @@ form.onsubmit = function (e) {
     if(message.indexOf("/join")==0) {
         room = message.split(" ", 2)[1].trim();
     }
+
+    if(message == "/leave") {
+        room = "";
+    }
+
     socket.send(prefix + message);
 
     messagesList.innerHTML +=  messageOutStart +'You'+messageMiddle+ message + messageEnd;;
@@ -275,9 +280,11 @@ function createSocket() {
         messagesList.innerHTML="";
         chatRoomList.innerHTML="";
         userList.innerHTML="";
-        isLoggedIn=false;
         login.innerHTML="";
+        isLoggedIn=false;
         username="";
+        room="";
+        prefix="";
     };
 }
 
