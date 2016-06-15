@@ -13,7 +13,7 @@ public class ChatRoom {
 
     final ChannelGroup webChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     final ChannelGroup tcpChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-    final ConcurrentSet<String> userSet = new ConcurrentSet<>();
+//    final ConcurrentSet<String> userSet = new ConcurrentSet<>();
     final ConcurrentHashMap<String,ChannelId> userMap=new ConcurrentHashMap<>();
 
     private String name;
@@ -39,8 +39,7 @@ public class ChatRoom {
         return userMap.get(username);
     }
     public void addUser(String username, Channel channel, boolean isWeb) {
-        if (!userSet.contains(username)) {
-            userSet.add(username);
+        if (!userMap.containsKey(username)) {
             userMap.put(username,channel.id());
             if (isWeb)
                 webChannelGroup.add(channel);
@@ -50,7 +49,6 @@ public class ChatRoom {
     }
 
     public void removeUser(String username, Channel channel, boolean isWeb) {
-        userSet.remove(username);
         userMap.remove(username);
         if (isWeb)
             webChannelGroup.remove(channel);

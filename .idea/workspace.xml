@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/js/app.js" afterPath="$PROJECT_DIR$/src/main/resources/js/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/pages/index.html" afterPath="$PROJECT_DIR$/src/main/resources/pages/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
     </list>
     <ignored path="ChatServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,33 +27,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/server/Main.java">
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="79" />
+              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1037#1038#0" expanded="true" />
+                <element signature="e#1085#1086#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
+      <file leaf-file-name="ChatRoom.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="30" />
+            <state relative-caret-position="510">
+              <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
               <folding>
-                <marker date="1465948603222" expanded="true" signature="1021:1037" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="1141:1163" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="1290:1306" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="1408:1430" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="3431:3447" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="3614:3636" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="5275:5291" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="5695:5711" ph="..." />
-                <marker date="1465948603222" expanded="true" signature="5878:5900" ph="..." />
+                <element signature="e#896#897#0" expanded="true" />
+                <element signature="e#934#935#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,7 +66,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2030">
+            <state relative-caret-position="119">
               <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
               <folding />
             </state>
@@ -145,16 +148,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPServerInitializer.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/event/TCPEvent.java" />
         <option value="$PROJECT_DIR$/src/main/resources/css/style.css" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/util/MessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/css/chat.css" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/Main.java" />
         <option value="$PROJECT_DIR$/src/main/resources/pages/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java" />
         <option value="$PROJECT_DIR$/src/main/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
       </list>
     </option>
   </component>
@@ -208,6 +211,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -366,9 +370,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ChatServer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -994,12 +1027,14 @@
       <workItem from="1465942078494" duration="162000" />
       <workItem from="1465942275631" duration="4255000" />
       <workItem from="1465947236375" duration="88000" />
-      <workItem from="1465948086220" duration="702000" />
+      <workItem from="1465948086220" duration="757000" />
+      <workItem from="1465950293555" duration="3260000" />
+      <workItem from="1465965069881" duration="373000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142534000" />
+    <option name="totallyTimeSpent" value="146222000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1086,7 +1121,7 @@
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1245,13 +1280,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="7" column="22" selection-start-line="7" selection-start-column="22" selection-end-line="14" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/jquery-2.1.4.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1270,13 +1298,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="58" column="21" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="40" column="74" selection-start-line="40" selection-start-column="74" selection-end-line="40" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -1323,13 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="73" selection-start-line="24" selection-start-column="73" selection-end-line="24" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="595">
@@ -1338,19 +1352,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="79" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/pages/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2030">
+        <state relative-caret-position="119">
           <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
           <folding />
         </state>
@@ -1358,18 +1362,60 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="104" column="0" selection-start-line="104" selection-start-column="0" selection-end-line="104" selection-end-column="30" />
+        <state relative-caret-position="412">
+          <caret line="135" column="3" selection-start-line="135" selection-start-column="3" selection-end-line="135" selection-end-column="3" />
           <folding>
-            <marker date="1465948603222" expanded="true" signature="1021:1037" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="1141:1163" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="1290:1306" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="1408:1430" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="3431:3447" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="3614:3636" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="5275:5291" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="5695:5711" ph="..." />
-            <marker date="1465948603222" expanded="true" signature="5878:5900" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="1021:1037" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="1141:1163" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="1290:1306" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="1408:1430" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="3233:3249" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="3420:3442" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="3674:3690" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="3861:3883" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="5709:5725" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="6129:6145" ph="..." />
+            <marker date="1465953339606" expanded="true" signature="6312:6334" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="32" column="74" selection-start-line="32" selection-start-column="74" selection-end-line="32" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/controller/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
+          <folding>
+            <element signature="e#896#897#0" expanded="true" />
+            <element signature="e#934#935#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
+          <folding>
+            <element signature="e#1037#1038#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
           </folding>
         </state>
       </provider>
