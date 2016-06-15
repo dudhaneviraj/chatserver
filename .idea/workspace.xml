@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
     </list>
     <ignored path="ChatServer.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +39,7 @@
       <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
+            <state relative-caret-position="478">
               <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
               <folding>
                 <element signature="e#1037#1038#0" expanded="true" />
@@ -1029,12 +1028,12 @@
       <workItem from="1465947236375" duration="88000" />
       <workItem from="1465948086220" duration="757000" />
       <workItem from="1465950293555" duration="3260000" />
-      <workItem from="1465965069881" duration="373000" />
+      <workItem from="1465965069881" duration="453000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146222000" />
+    <option name="totallyTimeSpent" value="146302000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1411,7 +1410,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
+        <state relative-caret-position="478">
           <caret line="53" column="13" selection-start-line="53" selection-start-column="13" selection-end-line="53" selection-end-column="13" />
           <folding>
             <element signature="e#1037#1038#0" expanded="true" />
