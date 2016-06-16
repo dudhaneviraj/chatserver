@@ -53,11 +53,6 @@ public class TCPHandler extends SimpleChannelInboundHandler<String> {
             return;
         }
 
-        if ("/quit".equals(msg.toLowerCase().trim())) {
-            ctx.close();
-            return;
-        }
-
         if (msg.toLowerCase().trim().equals("/rooms")) {
             UTIL.getChatRooms(ctx);
             return;
