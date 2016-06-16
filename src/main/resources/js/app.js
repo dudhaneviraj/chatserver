@@ -15,6 +15,7 @@ var chatRoomCreateButton = document.getElementById('chatroomCreate');
 var login = document.getElementById("login");
 var loginStatus = document.getElementById("loginStatus");
 var loginBtn = document.getElementById("loginBtn");
+var userStatus = document.getElementById('userStatus');
 var isLoggedIn=false;
 var room = "";
 var prefix= "";
@@ -25,6 +26,22 @@ messageInStart='<ul class="chat"><li class="left clearfix"><span style="font-siz
 messageOutStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload"></span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">';
 messageMiddle='</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div><p>';
 messageEnd='</p></div></li></ul>';
+
+
+emojify.setConfig({
+
+    // emojify_tag_type : 'select',// Only run emojify.js on this element
+    only_crawl_id    : null,            // Use to restrict where emojify.js applies
+    img_dir          : '/pictures/images/emoji',  // Directory for emoji images
+    ignored_tags     : {                // Ignore the following tags
+        'SCRIPT'  : 1,
+        'TEXTAREA': 1,
+        'A'       : 1,
+        'PRE'     : 1,
+        'CODE'    : 1
+    }
+});
+
 
 var ip = window.location.hostname;
 
@@ -46,8 +63,8 @@ form.onsubmit = function (e) {
 
     socket.send(prefix + message);
 
-    messagesList.innerHTML +=  messageOutStart +'You'+messageMiddle+ message + messageEnd;;
-
+    messagesList.innerHTML +=  messageOutStart +'You'+messageMiddle+ message + messageEnd;
+    emojify.run(document.getElementById('messages'));
     messageField.value = '';
 
     return false;
@@ -187,7 +204,7 @@ function renderUsers() {
 
     userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-globe">' +
         '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Group</strong>' +
-        '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" checked></div></div></li>';
+        '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" ></div></div></li>';
     for(var i=0;i<parsed.length;i++)
     {
         userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
@@ -201,11 +218,15 @@ function renderUsers() {
 }
 userList.onchange=function () {
     prefix = document.querySelector('input[name = "usr"]:checked').value;
-    if(prefix.trim().length==0)
-        prefix="";
-    else
-        prefix='/user '+prefix+" ";
 
+
+    if(prefix.trim().length==0) {
+        prefix = "";
+        userStatus.innerHTML='Users' + '<span class="pull-right">Current: Group</span>';
+    }else {
+        userStatus.innerHTML='Users' + '<span class="pull-right">Current: '+prefix+'</span>';
+        prefix = '/user ' + prefix + " ";
+    }
 }
 
 window.setInterval(function() {
@@ -278,6 +299,7 @@ function createSocket() {
         messagesList.innerHTML += messageInStart +'Incoming'+messageMiddle+ message + messageEnd;
         renderChatrooms()
         renderUsers()
+        emojify.run(document.getElementById('messages'));
     };
 
     socket.onclose = function (event) {
@@ -287,6 +309,7 @@ function createSocket() {
         chatRoomList.innerHTML="";
         userList.innerHTML="";
         login.innerHTML="";
+        userStatus.innerHTML="Users"
         isLoggedIn=false;
         username="";
         room="";

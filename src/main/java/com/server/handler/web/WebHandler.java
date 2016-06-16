@@ -88,12 +88,11 @@ public class WebHandler extends SimpleChannelInboundHandler<WebSocketFrame> {
 
         if (msg.toLowerCase().trim().startsWith("/user")) {
             String[] data = msg.split(" ", 3);
-            if (data.length != 3)
+            if (data.length<3)
                 return;
             UTIL.messageUser(user, data[1], ctx, data[2]);
             return;
         }
-
         UTIL.broadCast(user, ctx, msg);
     }
 

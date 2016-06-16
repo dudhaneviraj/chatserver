@@ -143,24 +143,18 @@ public class MessageUtil {
             return;
         }
         ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
-
         channelGroup.stream().forEach(c -> {
-                if(c.id().asLongText().equals(id.asLongText()))
-                    if (c != ctx.channel())
+                if(c.id().asLongText().equals(id.asLongText()) && c !=ctx.channel())
                         write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg + '\n', true);
-                    else
-                        write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] [TO USER:"+username+"]" + msg + '\n', false);
         });
 
         channelGroup = user.getChatRoom().getTCPChannels();
 
         channelGroup.stream().forEach(c -> {
-            if(c.id().asLongText().equals(id.asLongText()))
-                if (c != ctx.channel())
+            if(c.id().asLongText().equals(id.asLongText()) && c != ctx.channel())
                     write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg + '\n', false);
-                else
-                    write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] [TO USER:"+username+"]" + msg + '\n', false);
         });
+        write(ctx, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] [TO USER:"+username+"]" + msg + '\n', isWeb);
     }
 
     public void getUsers(User user, ChannelHandlerContext ctx) {

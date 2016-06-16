@@ -13,10 +13,10 @@ import io.dropwizard.setup.Environment;
 public class Main extends Application<Config> {
 
     public static int CHANNEL_CLOSE_MINUTES = 60;
+
     public static void main(String[] args) throws Exception {
         new Main().run(new String[]{"server", "config.yml"});
     }
-
 
     @Override
     public String getName() {
@@ -31,7 +31,6 @@ public class Main extends Application<Config> {
         bootstrap.addBundle(new AssetsBundle("/css", "/css", "/", "css"));
         bootstrap.addBundle(new AssetsBundle("/fonts", "/fonts", "/"));
         bootstrap.addBundle(new AssetsBundle("/pictures", "/pictures", "/", "*"));
-
     }
 
     @Override
