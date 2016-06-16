@@ -82,8 +82,6 @@ public class MessageUtil {
         user.addChatRoom(chatRoom);
         chatRoom.addUser(user.getUserName(), ctx.channel(), isWeb);
         write(ctx, "ENTERING CHAT ROOM: " + chatRoom.getName() + "\n", isWeb);
-//        getUsers(user, ctx);
-//        write(ctx, "END OF LIST.\n", isWeb);
         broadCastMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
     }
 
@@ -140,7 +138,10 @@ public class MessageUtil {
     public void messageUser(User user,String username,ChannelHandlerContext ctx,String msg)
     {
         ChannelId id=user.getChatRoom().getChannelId(username);
-
+        if(id==null) {
+            write(ctx,"[SYSTEM] NO SUCH USER",false);
+            return;
+        }
         ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
 
         channelGroup.stream().forEach(c -> {
@@ -165,7 +166,6 @@ public class MessageUtil {
     public void getUsers(User user, ChannelHandlerContext ctx) {
         user.getChatRoom().getChatRoomUsers().forEach(p ->
         {
-            System.out.println(p);
             if (user.getUserName().equals(p))
                 write(ctx, "* " + p + " (** THIS IS YOU)", isWeb);
             else

@@ -12,7 +12,7 @@ import io.dropwizard.setup.Environment;
 
 public class Main extends Application<Config> {
 
-
+    public static int CHANNEL_CLOSE_MINUTES = 60;
     public static void main(String[] args) throws Exception {
         new Main().run(new String[]{"server", "config.yml"});
     }
