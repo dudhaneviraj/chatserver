@@ -10,8 +10,10 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/chat.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="/pictures/chat.png">
+
 </head>
 <body background="/pictures/back.png">
+
 
 <div class="row">
 
@@ -47,7 +49,7 @@
     </div>
 
     <div class="col-sm-6">
-        <form id="message-form" class="form-horizontal" >
+        <form id="message-form" class="form-horizontal">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <strong>
@@ -80,9 +82,9 @@
 
     <div class="col-sm-2">
         <div class="panel panel-primary">
-            <div class="panel-heading">Users</div>
+            <div id="userStatus" class="panel-heading">Users</div>
             <div class="panel-body">
-                <ul id="users" class="chat">  </ul>
+                <ul id="users" class="chat"></ul>
             </div>
 
             <div class="panel-footer">
@@ -150,6 +152,7 @@
 
 <script src="/js/jquery-2.1.4.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/emojify.js"></script>
 <script src="/js/app.js"></script>
 
 </body>
