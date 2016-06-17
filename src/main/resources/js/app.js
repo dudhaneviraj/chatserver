@@ -22,10 +22,6 @@ var prefix= "";
 var socket;
 var username="";
 
-messageInStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-download"></span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">';
-messageOutStart='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload"></span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">';
-messageMiddle='</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div><p>';
-messageEnd='</p></div></li></ul>';
 
 
 emojify.setConfig({
