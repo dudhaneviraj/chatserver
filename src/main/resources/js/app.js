@@ -62,8 +62,18 @@ form.onsubmit = function (e) {
     }
 
     socket.send(prefix + message);
+    // if(prefix=="") {
+    //     to=(room=="")?"GROUP":room;
+    //     messagesList.innerHTML += '<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload">' +
+    //         '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: YOU' +
+    //         '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + getTime() + '</small></div>' +
+    //         '<p>To: ' + to+ '</p><p>Message: ' + message + '</p></div></li></ul>'
+    // }else
+    //     messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload">' +
+    //     '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: YOU' +
+    //     '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
+    //     '<p>To: '+prefix.split(" ",2)[1]+' (USER)</p><p>Message: '+message+'</p></div></li></ul>'
 
-    messagesList.innerHTML +=  messageOutStart +'You'+messageMiddle+ message + messageEnd;
     emojify.run(document.getElementById('messages'));
     messageField.value = '';
 
@@ -247,6 +257,10 @@ function getTime() {
     else
         tm="AM";
     hours=hours%12;
+    hours=(hours<10)?'0'+hours:hours;
+    month=(month<10)?'0'+month:month;
+    day=(day<10)?'0'+day:day;
+    minutes=(minutes<10)?'0'+minutes:minutes;
     return hours+":"+minutes+" "+tm+" "+month + "/" + day + "/" + year;
 }
 
@@ -282,21 +296,25 @@ function createSocket() {
     };
 
     socket.onmessage = function (event) {
-        var message = event.data;
+        var result = $.parseJSON(event.data);
+
         if(!isLoggedIn)
         {
-            if(message.indexOf('WELCOME')==0) {
+            if(result["message"].indexOf('WELCOME')==0) {
                 isLoggedIn = true;
                 $("#loginModal").modal('hide')
                 socketStatus.innerHTML+='<span class="pull-right glyphicon glyphicon-user"> '+username+'</span>';
             }
             else
             {
-                loginStatus.innerHTML=message;
+                loginStatus.innerHTML=result["message"];
                 return;
             }
         }
-        messagesList.innerHTML += messageInStart +'Incoming'+messageMiddle+ message + messageEnd;
+        messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-download">' +
+        '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
+            '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
+            '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'
         renderChatrooms()
         renderUsers()
         emojify.run(document.getElementById('messages'));

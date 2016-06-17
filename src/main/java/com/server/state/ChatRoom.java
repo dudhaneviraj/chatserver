@@ -13,7 +13,7 @@ public class ChatRoom {
 
     final ChannelGroup webChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     final ChannelGroup tcpChannelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
-//    final ConcurrentSet<String> userSet = new ConcurrentSet<>();
+
     final ConcurrentHashMap<String,ChannelId> userMap=new ConcurrentHashMap<>();
 
     private String name;
