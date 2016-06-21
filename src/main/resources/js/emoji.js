@@ -898,14 +898,8 @@ $("#messageshow").emoji({
     }]
 });
 
-$("#messageshow").onchange=$("#sourceText").emojiParse({
-    icons: [{
-        path: "/pictures/images/selector/",
-        file: ".png",
-        placeholder: ":{alias}:",
-        alias: alias,
-    }]
-});
+
+
 
 $('#messageshow').bind('keydown', function(event) {
     if(event.keyCode==13)

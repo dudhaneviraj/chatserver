@@ -24,13 +24,36 @@ var username="";
 var ip = window.location.hostname;
 var address = ip + ":8000"
 var sendBtn=document.getElementById("send")
+var footer=document.getElementById("footer")
 var selected="";
+var scrollList=document.getElementById("scrollList")
+
+
 function init(){
-    messageShow.style.width=screen.width*0.41+"px";
-    messageShow.style.height="100px"
     messageField.innerHTML="";
     messagesList.innerHTML="";
 }
+
+scrollList.onchange=function(){
+    var elem = scrollList;
+    elem.scrollTop = elem.scrollHeight;
+};
+
+$('messages').bind("DOMSubtreeModified",function(){
+    var elem = scrollList;
+    elem.scrollTop = elem.scrollHeight;
+});
+
+$('messageshow').bind("DOMSubtreeModified",function(){
+    var elem = messageShow;
+    elem.scrollTop = elem.scrollHeight;
+});
+
+
+// window.setInterval(function() {
+//     var elem = document.getElementById('scroll');
+//     elem.scrollTop = elem.scrollHeight;
+// },800);
 createSocket();
 
 loadLoginModal()
@@ -67,7 +90,7 @@ form.onsubmit = function (e) {
 
     socket.send(prefix + message);
  
-    emojify.run(document.getElementById('messages'));
+    emojify.run(messagesList);
     messageField.value = '';
 
     return false;
@@ -91,7 +114,6 @@ function loadLoginModal() {
 
 openCloseBtn.onclick = function (e) {
     e.preventDefault();
-
     if(socket.readyState!=1)
     {
         createSocket();
@@ -258,10 +280,7 @@ userList.onchange=function () {
     }
 }
 
-window.setInterval(function() {
-    var elem = document.getElementById('scroll');
-    elem.scrollTop = elem.scrollHeight;
-},800);
+
 
 function getTime() {
     var currentTime = new Date()
