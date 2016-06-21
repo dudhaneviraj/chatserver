@@ -68,7 +68,20 @@
     background-color: #843534;
 }
 
+[contenteditable="true"].single-line {
+    white-space: nowrap;
+    width:200px;
+    overflow: hidden;
+    resize: none;
+}
+[contenteditable="true"].single-line br {
+    display:none;
 
+}
+[contenteditable="true"].single-line * {
+    display:inline;
+    white-space:nowrap;
+}
 
 div[contenteditable=true] {
     background: rgba(0,0,0,0); /* transparent bg */
