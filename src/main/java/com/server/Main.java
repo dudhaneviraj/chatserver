@@ -36,6 +36,7 @@ public class Main extends Application<Config> {
     @Override
     public void run(Config config, Environment environment) throws Exception {
 
+
         environment.jersey().register(new Controller());
 
         IEvent webIEvent = WebEvent.getEvent();

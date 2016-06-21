@@ -123,6 +123,11 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.0.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20160212</version>
+        </dependency>
     </dependencies>
 
 </project>

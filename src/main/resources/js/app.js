@@ -1,5 +1,4 @@
 var form = document.getElementById('message-form');
-
 var messageField = document.getElementById('message');
 var messagesList = document.getElementById('messages');
 var chatRoomList = document.getElementById('chatrooms');
@@ -16,13 +15,25 @@ var login = document.getElementById("login");
 var loginStatus = document.getElementById("loginStatus");
 var loginBtn = document.getElementById("loginBtn");
 var userStatus = document.getElementById('userStatus');
+var messageShow=document.getElementById("messageshow")
 var isLoggedIn=false;
 var room = "";
 var prefix= "";
 var socket;
 var username="";
+var ip = window.location.hostname;
+var address = ip + ":8000"
+var sendBtn=document.getElementById("send")
+var selected="";
+function init(){
+    messageShow.style.width=screen.width*0.41+"px";
+    messageShow.style.height="100px"
+    messageField.innerHTML="";
+    messagesList.innerHTML="";
+}
+createSocket();
 
-
+loadLoginModal()
 
 emojify.setConfig({
 
@@ -39,11 +50,8 @@ emojify.setConfig({
 });
 
 
-var ip = window.location.hostname;
 
-address = ip + ":8000"
 
-createSocket();
 
 form.onsubmit = function (e) {
     e.preventDefault();
@@ -58,18 +66,7 @@ form.onsubmit = function (e) {
     }
 
     socket.send(prefix + message);
-    // if(prefix=="") {
-    //     to=(room=="")?"GROUP":room;
-    //     messagesList.innerHTML += '<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload">' +
-    //         '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: YOU' +
-    //         '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + getTime() + '</small></div>' +
-    //         '<p>To: ' + to+ '</p><p>Message: ' + message + '</p></div></li></ul>'
-    // }else
-    //     messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-upload">' +
-    //     '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: YOU' +
-    //     '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
-    //     '<p>To: '+prefix.split(" ",2)[1]+' (USER)</p><p>Message: '+message+'</p></div></li></ul>'
-
+ 
     emojify.run(document.getElementById('messages'));
     messageField.value = '';
 
@@ -83,10 +80,11 @@ chatRoomCreateButton.onclick = function (e) {
     createField.focus();
 }
 
-loadLoginModal()
+
 function loadLoginModal() {
     $("#loginModal").modal({backdrop: 'static', keyboard: false})
     login.focus();
+    openCloseBtn.disabled=true;
 }
 
 
@@ -192,40 +190,65 @@ createBtn.onclick = function (e) {
 
 
 function renderUsers() {
-    userList.innerHTML="";
-    if(room.length==0)
-    {
+    if (selected != "")
+        selected = document.querySelector('input[name = "usr"]:checked').value;
+
+    var isSelected = false;
+
+    userList.innerHTML = "";
+    if (room.length == 0) {
         userList.innerHTML += '<ul class="chat"><li class="clearfix"><p>No Chatroom Selected</p></div></li></ul>';
         return;
     }
-    var data=httpGet("/api/users/"+room)
+    var data = httpGet("/api/users/" + room)
 
-    var parsed=JSON.parse(data);
+    var temp = ""
+    var parsed = JSON.parse(data);
 
-    if(parsed.length==0)
-    {
+    if (parsed.length == 0) {
         userList.innerHTML += '<ul class="chat"><li class="clearfix"><p>No Users Active</p></div></li></ul>';
         return;
     }
-
-    userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-globe">' +
-        '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Group</strong>' +
-        '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" ></div></div></li>';
-    for(var i=0;i<parsed.length;i++)
-    {
-        userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
-            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+parsed[i]+'</strong>' +
-            '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "'+parsed[i]+'"></div></div></li>';
+    for (var i = 0; i < parsed.length; i++) {
+        if (parsed[i] == username.toLowerCase())
+            continue;
+        if (parsed[i] == selected) {
+            temp += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
+                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">' + parsed[i] + '</strong>' +
+                '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "' + parsed[i] + '" checked></div></div></li>';
+            isSelected = true;
+        }
+        else {
+            temp += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-user">' +
+                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">' + parsed[i] + '</strong>' +
+                '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "' + parsed[i] + '"></div></div></li>';
+        }
+    }
+    if (isSelected)
+        userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-globe">' +
+            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Group</strong>' +
+            '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" ></div></div></li>';
+    else {
+        userList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left  glyphicon glyphicon-globe">' +
+            '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font">Group</strong>' +
+            '<input type = "radio"  name = "usr" class="radio-inline pull-right" value = "" checked></div></div></li>';
+        selected = "";
     }
 
-
-
-
+    userList.innerHTML += temp
+    if (isSelected) {
+        prefix = "/user" + selected;
+        userStatus.innerHTML = 'Users' + '<span class="pull-right">Current: ' + selected + '</span>';
+    } else
+    {
+        prefix = ""
+        userStatus.innerHTML='Users' + '<span class="pull-right">Current: Group</span>';
+    }
 }
 userList.onchange=function () {
     prefix = document.querySelector('input[name = "usr"]:checked').value;
 
-
+    selected=prefix
     if(prefix.trim().length==0) {
         prefix = "";
         userStatus.innerHTML='Users' + '<span class="pull-right">Current: Group</span>';
@@ -298,6 +321,7 @@ function createSocket() {
         {
             if(result["message"].indexOf('WELCOME')==0) {
                 isLoggedIn = true;
+                openCloseBtn.disabled=false;
                 $("#loginModal").modal('hide')
                 socketStatus.innerHTML+='<span class="pull-right glyphicon glyphicon-user"> '+username+'</span>';
             }
@@ -307,10 +331,16 @@ function createSocket() {
                 return;
             }
         }
-        messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-download">' +
-        '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
-            '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
-            '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'
+        if(result['from']=="YOU")
+            messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-upload">' +
+                '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
+                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
+                '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'
+        else
+            messagesList.innerHTML+='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-download">' +
+            '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
+                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
+                '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'
         renderChatrooms()
         renderUsers()
         emojify.run(document.getElementById('messages'));

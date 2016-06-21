@@ -9,10 +9,13 @@
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="/css/chat.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.4/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet"/>
+    <link href="/css/jquery.emoji.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="/pictures/chat.png">
 
 </head>
-<body background="/pictures/back.png">
+<body background="/pictures/back.png" onload="init()">
 
 
 <div class="row">
@@ -62,15 +65,19 @@
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <div class="input-group">
+                    <div class="input-group ">
                         <span class="input-group-btn">
                         <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
                                 id="openclose"></button>
                         </span>
-                        <input id="message" type="text" maxlength="300" class="form-control input-sm"
-                               placeholder="Type your message here...">
+                        <span class="input-group">
+                        <input id="message" type="hidden">
+                        <div id="messageshow" class="col-sm-5"
+                             style="padding:10px; overflow-y: scroll; background: white; " contenteditable></div>
+                            </span>
                         <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary hidden" id="send">Send</button>
+                                <button type="button" class="btn btn-success" id="emoji"><strong>:)</strong></button>
                                 <button type="reset" class="btn btn-block glyphicon glyphicon-refresh"
                                         id="clear"></button>
                         </span>
@@ -154,6 +161,10 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/emojify.js"></script>
 <script src="/js/app.js"></script>
+<script src="/js/jquery.emoji.min.js"></script>
+<script src="/js/jquery.mousewheel.js"></script>
+<script src="/js/jquery.mCustomScrollbar.min.js"></script>
+<script src="/js/emoji.js"></script>
 
 </body>
 </html>
