@@ -17,20 +17,20 @@
 </head>
 <body background="/pictures/back.png" onload="init()">
 
-
-<div class="row">
-    <div class="col-sm-1"></div>
-    <div class="col-sm-2">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Chatrooms
-            </div>
-            <div class="panel-body">
-                <ul id="chatrooms" class="chat">
-                </ul>
-            </div>
-            <div class="panel-footer">
-                <div class="input-group">
+<div class="fill">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Chatrooms
+                </div>
+                <div class="panel-body">
+                    <ul id="chatrooms" class="chat">
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
                         <span class="input-group-btn">
                                 <button type="button" id="chatroomCreate"
                                         class="btn btn-success glyphicon glyphicon-plus"></button>
@@ -39,102 +39,104 @@
                                <button type="button" class="pull-right btn btn-default glyphicon glyphicon-refresh"
                                        id="crefresh"></button>
                         </span>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="pull-left">
-                <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign" id="openclose"></button>
-            </div>
-            <div class="panel-heading">
-                <strong>
-                    <div id="status">Connecting...</div>
-                </strong>
-            </div>
-            <div id="scrollList" class="panel-body">
-                <ul id="messages" class="chat"></ul>
-            </div>
-            <div class="panel-footer">
-                <div class="input-group text-center">
+        <div class="col-sm-6">
+            <div class="panel panel-primary">
+                <div class="pull-left">
+                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
+                            id="openclose"></button>
+                </div>
+                <div class="panel-heading">
+                    <strong>
+                        <div id="status">Connecting...</div>
+                    </strong>
+                </div>
+                <div id="scrollList" class="panel-body">
+                    <ul id="messages" class="chat"></ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group-sm text-center">
                             <span class="input-group-btn">
                                  <form id="message-form" class="form-horizontal">
                                            <input id="message" type="hidden">
-                                            <input type="submit" class="btn hidden" id="send">Send</input>
+                                            <input type="submit" class="btn-sm hidden" id="send">Send</input>
                                      <input type="image" value="button" class="btn btn-link pull-right" id="clear"
-                                            src="/pictures/images/emoji/x.png" style="height:60px;">
+                                            src="/pictures/images/emoji/x.png" style="height:30px;">
                                  </form>
-                                <input type="image" value="" class="btn btn-link pull-left" id="emoji"
-                                       src="/pictures/images/emoji/smiley.png" style="height:60px;">
+                                <input type="image" value="" class="btn-sm btn-link pull-left" id="emoji"
+                                       src="/pictures/images/emoji/smiley.png" style="height:30px;">
                             </span>
+                    </div>
+                </div>
+                <div id="footer" class="panel-footer input-group-lg">
+                    <div id="messageshow" style=" overflow-y: scroll; background: white; " class="well-lg"
+                         contenteditable></div>
                 </div>
             </div>
-            <div id="footer" class="panel-footer input-group-lg">
-                <div id="messageshow" style=" overflow-y: scroll; background: white; " class="well-lg"
-                     contenteditable></div>
-            </div>
         </div>
-    </div>
-    <div class="col-sm-2">
-        <div class="panel panel-primary">
-            <div id="userStatus" class="panel-heading">Users</div>
-            <div class="panel-body">
-                <ul id="users" class="chat"></ul>
-            </div>
+        <div class="col-sm-2">
+            <div class="panel panel-primary">
+                <div id="userStatus" class="panel-heading">Users</div>
+                <div class="panel-body">
+                    <ul id="users" class="chat"></ul>
+                </div>
 
-            <div class="panel-footer">
-                <div class="input-group text-center">
+                <div class="panel-footer">
+                    <div class="input-group text-center">
                             <span class="input-group-btn">
                                  <button type="button" class="btn btn-default glyphicon glyphicon-refresh"
                                          id="urefresh"></button>
                             </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+
+    <div class="row"></div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create New Chat Room</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="chatroom">Enter Name:</label>
+                        <input type="text" class="form-control" maxlength="20" id="chatroom">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="create">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-1"></div>
-</div>
-
-<div class="row"></div>
-<div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create New Chat Room</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="chatroom">Enter Name:</label>
-                    <input type="text" class="form-control" maxlength="20" id="chatroom">
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="create">Create</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="loginModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Login</h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <p id="loginStatus" class="text-danger"></p>
-                    <label for="login">Enter Username:</label>
-                    <input type="text" class="form-control" maxlength="20" id="login">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p id="loginStatus" class="text-danger"></p>
+                        <label for="login">Enter Username:</label>
+                        <input type="text" class="form-control" maxlength="20" id="login">
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                </div>
             </div>
         </div>
     </div>
