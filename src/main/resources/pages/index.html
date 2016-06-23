@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>Chat Server</title>
     <meta charset="utf-8"/>
@@ -8,100 +8,129 @@
     <meta name="author" content=""/>
     <!-- BOOTSTRAP CORE STYLE CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/template.css" rel="stylesheet"/>
     <link href="/css/chat.css" rel="stylesheet"/>
+
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.4/jquery.mCustomScrollbar.min.css"
           rel="stylesheet"/>
     <link href="/css/jquery.emoji.css" rel="stylesheet"/>
     <link rel="shortcut icon" href="/pictures/chat.png">
 
 </head>
-<body background="/pictures/back.png" onload="init()">
+<body background="/pictures/back.png">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CHAT SERVER</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
+                            id="openclose"></button>
+                </a></li>
+                <li><a href="#"><div id="status">Connecting...</div>
+                </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><div id="navStatus"></div>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 <div class="fill">
     <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-2">
+        <div class="col-xs-2">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    Chatrooms
+                    CHATROOMS
+                    <span class="text-right right">
+                        <button type="button" id="chatroomCreate"
+                                class="btn btn-success glyphicon glyphicon-plus"></button>
+                           <button type="button" class=" btn btn-link    glyphicon glyphicon-refresh"
+                                   id="crefresh"></button>
+                    </span>
                 </div>
                 <div class="panel-body">
                     <ul id="chatrooms" class="chat">
                     </ul>
                 </div>
                 <div class="panel-footer">
-                    <div class="input-group">
-                        <span class="input-group-btn">
-                                <button type="button" id="chatroomCreate"
-                                        class="btn btn-success glyphicon glyphicon-plus"></button>
-                        </span>
-                        <span class="input-group-btn">
-                               <button type="button" class="pull-right btn btn-default glyphicon glyphicon-refresh"
-                                       id="crefresh"></button>
-                        </span>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-sm-6">
+        <div class="col-xs-3">
             <div class="panel panel-primary">
-                <div class="pull-left">
-                    <button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
-                            id="openclose"></button>
-                </div>
                 <div class="panel-heading">
                     <strong>
-                        <div id="status">Connecting...</div>
+                        <div>MESSAGE BOX</div>
                     </strong>
                 </div>
-                <div id="scrollList" class="panel-body">
-                    <ul id="messages" class="chat"></ul>
+                <div class="panel-footer input-group-lg">
+                    <div id="messageshow" style=" overflow-y: scroll; max-height: 200px; background: white; "
+                         class="panel-body"
+                         contenteditable></div>
                 </div>
                 <div class="panel-footer">
                     <div class="input-group-sm text-center">
                             <span class="input-group-btn">
                                  <form id="message-form" class="form-horizontal">
                                            <input id="message" type="hidden">
-                                            <input type="submit" class="btn-sm hidden" id="send">Send</input>
-                                     <input type="image" value="button" class="btn btn-link pull-right" id="clear"
-                                            src="/pictures/images/emoji/x.png" style="height:30px;">
+                                        <input type="submit" class="hidden btn-sm pull-left" id="send">Send</input>
+                                        <input type="image" value="" class="btn-sm btn-link pull-right" id="emoji"
+                                               src="/pictures/images/emoji/smiley.png" style="height:30px;">
+
                                  </form>
-                                <input type="image" value="" class="btn-sm btn-link pull-left" id="emoji"
-                                       src="/pictures/images/emoji/smiley.png" style="height:30px;">
                             </span>
                     </div>
                 </div>
-                <div id="footer" class="panel-footer input-group-lg">
-                    <div id="messageshow" style=" overflow-y: scroll; background: white; " class="well-lg"
-                         contenteditable></div>
+            </div>
+
+        </div>
+        <div class="col-xs-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>
+                        MESSAGES
+                    </strong>
+                    <span class="pull-right">
+                    <input type="image" value="button" class="btn btn-link " id="clear"
+                           src="/pictures/images/emoji/x.png" style="height:30px;">
+                    </span>
+
+                </div>
+                <div id="body" class="panel-body">
+                    <ul id="messages" class="chat"></ul>
+                </div>
+                <div class="panel-footer">
                 </div>
             </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-xs-2">
             <div class="panel panel-primary">
-                <div id="userStatus" class="panel-heading">Users</div>
+                     <span class="pull-left">
+                         <button type="button" class="btn btn-link glyphicon glyphicon-refresh"
+                             id="urefresh"></button>
+                     </span>
+                <div id="userStatus" class="panel-heading"><strong>USERS</strong></div>
                 <div class="panel-body">
                     <ul id="users" class="chat"></ul>
                 </div>
 
                 <div class="panel-footer">
                     <div class="input-group text-center">
-                            <span class="input-group-btn">
-                                 <button type="button" class="btn btn-default glyphicon glyphicon-refresh"
-                                         id="urefresh"></button>
-                            </span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-1"></div>
     </div>
 
     <div class="row"></div>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
