@@ -130,7 +130,7 @@ public class WebMessageUtil {
         ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
         channelGroup.stream().forEach(c -> {
             if (c.id().asLongText().equals(id.asLongText()) && c != ctx.channel())
-                write(c, user.getUserName(), user.getChatRoom().getName(), msg);
+                write(c, user.getUserName(), "YOU", msg);
         });
 
         channelGroup = user.getChatRoom().getTCPChannels();
@@ -139,7 +139,7 @@ public class WebMessageUtil {
             if (c.id().asLongText().equals(id.asLongText()) && c != ctx.channel())
                 tcpMessageUtil.write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg);
         });
-        write(ctx, "YOU", user.getUserName(), msg);
+        write(ctx, "YOU", username, msg);
     }
 
 
