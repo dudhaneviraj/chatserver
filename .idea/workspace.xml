@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/js/app.js" afterPath="$PROJECT_DIR$/src/main/resources/js/app.js" />
-    </list>
+    <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="" />
     <ignored path="ChatServer.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -890,12 +888,12 @@
       <workItem from="1466673358921" duration="8958000" />
       <workItem from="1466720102778" duration="315000" />
       <workItem from="1466823632771" duration="10177000" />
-      <workItem from="1466839401739" duration="9294000" />
+      <workItem from="1466839401739" duration="9388000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248652000" />
+    <option name="totallyTimeSpent" value="248746000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
