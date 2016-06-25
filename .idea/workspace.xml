@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="540b860f-eb71-46ac-bed3-fd7aa2d401f6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java" afterPath="$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/js/app.js" afterPath="$PROJECT_DIR$/src/main/resources/js/app.js" />
     </list>
     <ignored path="ChatServer.iws" />
@@ -29,35 +32,25 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+            <state relative-caret-position="517">
+              <caret line="340" column="135" selection-start-line="340" selection-start-column="135" selection-end-line="340" selection-end-column="135" />
               <folding>
-                <marker date="1466851101969" expanded="true" signature="3705:3721" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="3892:3914" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="4154:4170" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="4341:4363" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="6519:6535" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="6706:6728" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="7017:7033" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="7204:7226" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="7497:7513" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="7886:7902" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="10849:10865" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="11240:11256" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="11385:11407" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="11873:11889" ph="..." />
-                <marker date="1466851101969" expanded="true" signature="12020:12042" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="3701:3717" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="3888:3910" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="4150:4166" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="4337:4359" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="6515:6531" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="6702:6724" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="7013:7029" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="7200:7222" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="7493:7509" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="7882:7898" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="10845:10861" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="11496:11512" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="11641:11663" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="12129:12145" ph="..." />
+                <marker date="1466854095202" expanded="true" signature="12276:12298" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="bootstrap.min.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/js/bootstrap.min.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="5" column="5203" selection-start-line="5" selection-start-column="5198" selection-end-line="5" selection-end-column="5203" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -121,8 +114,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/server/util/WebUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/state/ChatRoom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/js/jquery.emoji.min.js" />
         <option value="$PROJECT_DIR$/src/main/java/com/server/Main.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
@@ -133,9 +124,11 @@
         <option value="$PROJECT_DIR$/src/main/resources/css/bootstrap.min.css" />
         <option value="$PROJECT_DIR$/src/main/resources/css/sb-admin.css" />
         <option value="$PROJECT_DIR$/src/main/resources/js/emoji.js" />
-        <option value="$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/css/chat.css" />
         <option value="$PROJECT_DIR$/src/main/resources/pages/index.html" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/js/app.js" />
       </list>
     </option>
@@ -251,32 +244,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chatserver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chatserver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -334,6 +301,74 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="chatserver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="server" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="handler" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tcp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -979,12 +1014,12 @@
       <workItem from="1466673358921" duration="8958000" />
       <workItem from="1466720102778" duration="315000" />
       <workItem from="1466823632771" duration="10177000" />
-      <workItem from="1466839401739" duration="11699000" />
+      <workItem from="1466839401739" duration="14692000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="251057000" />
+    <option name="totallyTimeSpent" value="254050000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -1252,14 +1287,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1268,28 +1295,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/server/state/User.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="95" column="5" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1406,14 +1415,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/emoji.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-318">
@@ -1429,10 +1430,7 @@
         <state relative-caret-position="255">
           <caret line="88" column="101" selection-start-line="88" selection-start-column="101" selection-end-line="88" selection-end-column="101" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#a#0;n#li#1;n#ul#0;n#div#1;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#2;n#form#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#2;n#form#0;n#span#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1447,32 +1445,64 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="-527">
           <caret line="5" column="5203" selection-start-line="5" selection-start-column="5198" selection-end-line="5" selection-end-column="5203" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/handler/tcp/TCPHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="72" column="23" selection-start-line="72" selection-start-column="23" selection-end-line="72" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/util/WebMessageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="103" column="16" selection-start-line="103" selection-start-column="16" selection-end-line="103" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/util/TcpMessageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/server/handler/web/WebHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="78" column="23" selection-start-line="78" selection-start-column="23" selection-end-line="78" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="72" column="4" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+        <state relative-caret-position="517">
+          <caret line="340" column="135" selection-start-line="340" selection-start-column="135" selection-end-line="340" selection-end-column="135" />
           <folding>
-            <marker date="1466851101969" expanded="true" signature="3705:3721" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="3892:3914" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="4154:4170" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="4341:4363" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="6519:6535" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="6706:6728" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="7017:7033" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="7204:7226" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="7497:7513" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="7886:7902" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="10849:10865" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="11240:11256" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="11385:11407" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="11873:11889" ph="..." />
-            <marker date="1466851101969" expanded="true" signature="12020:12042" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="3701:3717" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="3888:3910" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="4150:4166" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="4337:4359" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="6515:6531" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="6702:6724" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="7013:7029" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="7200:7222" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="7493:7509" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="7882:7898" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="10845:10861" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="11496:11512" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="11641:11663" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="12129:12145" ph="..." />
+            <marker date="1466854095202" expanded="true" signature="12276:12298" ph="..." />
           </folding>
         </state>
       </provider>

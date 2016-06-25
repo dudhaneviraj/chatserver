@@ -32,6 +32,7 @@ public class WebMessageUtil {
         ObjectNode dataTable = mapper.createObjectNode();
         dataTable.put("from", from);
         dataTable.put("to", to);
+        dataTable.put("type", "message");
         dataTable.put("message", msg);
         ctx.writeAndFlush(new TextWebSocketFrame(dataTable.toString()));
     }
@@ -41,10 +42,30 @@ public class WebMessageUtil {
         ObjectNode dataTable = mapper.createObjectNode();
         dataTable.put("from", from);
         dataTable.put("to", to);
+        dataTable.put("type", "message");
         dataTable.put("message", msg);
         ctx.writeAndFlush(new TextWebSocketFrame(dataTable.toString()));
     }
 
+    public void write(Channel ctx, String from,String type, String to, String msg) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode dataTable = mapper.createObjectNode();
+        dataTable.put("from", from);
+        dataTable.put("to", to);
+        dataTable.put("type", type);
+        dataTable.put("message", msg);
+        ctx.writeAndFlush(new TextWebSocketFrame(dataTable.toString()));
+    }
+
+    public void write(ChannelHandlerContext ctx,String type, String from, String to, String msg) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode dataTable = mapper.createObjectNode();
+        dataTable.put("from", from);
+        dataTable.put("to", to);
+        dataTable.put("type", type);
+        dataTable.put("message", msg);
+        ctx.writeAndFlush(new TextWebSocketFrame(dataTable.toString()));
+    }
 
     public void firstLogin(WebHandler serverHandler, ChannelHandlerContext ctx, String msg) {
 
@@ -64,8 +85,8 @@ public class WebMessageUtil {
         user.addChatRoom(chatRoom);
         chatRoom.addUser(user.getUserName(), ctx.channel(), true);
         write(ctx, "SYSTEM", user.getUserName(), "ENTERING CHAT ROOM: " + chatRoom.getName());
-
-
+        broadCastSystemMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName(),"REFRESH_USER");
+//        tcpMessageUtil.broadCastTCPMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
         broadCastMessage(tcpMessageUtil, user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
     }
 
@@ -73,6 +94,7 @@ public class WebMessageUtil {
         if (user.getChatRoom() != null) {
             broadCast(tcpMessageUtil, user, ctx, "GOTTA GO!");
             broadCastMessage(tcpMessageUtil, user, ctx, "* USER HAS LEFT CHAT: " + user.getUserName());
+            broadCastSystemMessage(user, ctx, "USER_LEFT" + user.getChatRoom().getName() + ": " + user.getUserName(),"REFRESH_USER");
             user.getChatRoom().removeUser(user.getUserName(), ctx.channel(), true);
             MANAGER.removeChatRoom(user.getChatRoom().getName());
             user.leaveChatRoom();
@@ -98,6 +120,28 @@ public class WebMessageUtil {
                 tcpMessageUtil.write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] " + msg + " (** THIS IS YOU)");
         });
     }
+
+
+    public void broadCastSystemMessage( User user, ChannelHandlerContext ctx, String msg,String type) {
+        ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
+        channelGroup.stream().forEach(c -> {
+            if (c != ctx.channel())
+                write(c, "SYSTEM",type, user.getChatRoom().getName(), msg);
+            else
+                write(c, "SYSTEM",type, user.getChatRoom().getName(), msg + " (** THIS IS YOU)");
+        });
+    }
+
+//    public void broadCastTCPMessage(TcpMessageUtil tcpMessageUtil, User user, ChannelHandlerContext ctx, String msg) {
+//        ChannelGroup channelGroup =  user.getChatRoom().getTCPChannels();
+//
+//        channelGroup.stream().forEach(c -> {
+//            if (c != ctx.channel())
+//                tcpMessageUtil.write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] " + msg);
+//            else
+//                tcpMessageUtil.write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] " + msg + " (** THIS IS YOU)");
+//        });
+//    }
 
     public void broadCast(TcpMessageUtil tcpMessageUtil, User user, ChannelHandlerContext ctx, String msg) {
 

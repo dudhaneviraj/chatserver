@@ -70,7 +70,7 @@ form.onsubmit = function (e) {
 
     if (message == "/leave")
         room = "";
-    
+
     socket.send(prefix +" "+ message);
 
     emojify.run(messagesList);
@@ -311,12 +311,24 @@ function createSocket() {
                 $("#loginModal").modal('hide')
                 navStatus.innerHTML = '   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  ' + username + '</span>';
                 loginStatus.innerHTML=''
+                renderChatrooms();
             }
             else {
                 loginStatus.innerHTML = result["message"];
                 return;
             }
         }
+
+        if(result['from'] == "SYSTEM")
+        {
+            if(result['type']=="REFRESH_USER")
+            {
+                renderChatrooms()
+                renderUsers();
+                return;
+            }
+        }
+
         if (result['from'] == "YOU")
             messagesList.innerHTML = '<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-upload">' +
                 '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: ' + result['from'] +
@@ -327,8 +339,6 @@ function createSocket() {
                 '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: ' + result['from'] +
                 '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + getTime() + '</small></div>' +
                 '<p>To: ' + result['to'] + '</p><p>Message:<br> ' + result['message'] + '</p></div></li></ul>' + messagesList.innerHTML
-        renderChatrooms()
-        renderUsers()
         emojify.run(document.getElementById('messages'));
 
         //scroll to bottom of messages
