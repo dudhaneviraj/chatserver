@@ -310,6 +310,7 @@ function createSocket() {
                 openCloseBtn.disabled = false;
                 $("#loginModal").modal('hide')
                 navStatus.innerHTML = '   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  ' + username + '</span>';
+                loginStatus.innerHTML=''
             }
             else {
                 loginStatus.innerHTML = result["message"];
