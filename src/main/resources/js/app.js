@@ -26,12 +26,34 @@ var ip = window.location.hostname;
 var address = ip + ":8000"
 var sendBtn=document.getElementById("send")
 var selected="";
+var wall = document.getElementById("body");
+var leftBody=document.getElementById("leftbody")
+var ftr1=document.getElementById("ftr1")
+var ftr2=document.getElementById("ftr2")
+var ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
+wall.setAttribute("style","height:"+ht+"px;")
 
 
-function init(){
-    messageField.innerHTML="";
-    messagesList.innerHTML="";
+function onElementHeightChange(elm, callback){
+    var lastHeight = elm.clientHeight, newHeight;
+    (function run(){
+        newHeight = elm.clientHeight;
+        if( lastHeight != newHeight )
+            callback();
+        lastHeight = newHeight;
+
+        if( elm.onElementHeightChangeTimer )
+            clearTimeout(elm.onElementHeightChangeTimer);
+
+        elm.onElementHeightChangeTimer = setTimeout(run, 200);
+    })();
 }
+
+onElementHeightChange(document.body, function(){
+    ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
+    wall.setAttribute("style","height:"+ht+"px;")
+});
+
 
 
 createSocket();
@@ -51,7 +73,6 @@ emojify.setConfig({
         'CODE'    : 1
     }
 });
-
 
 form.onsubmit = function (e) {
     e.preventDefault();

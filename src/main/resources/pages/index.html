@@ -45,16 +45,16 @@
     <div class="row">
         <div class="col-xs-2">
             <div class="panel panel-primary">
-                <div class="panel-heading">
-                    CHATROOMS
-                    <span class="text-right right">
+                    <span class="pull-right">
                         <button type="button" id="chatroomCreate"
-                                class="btn btn-success glyphicon glyphicon-plus"></button>
-                           <button type="button" class=" btn btn-link    glyphicon glyphicon-refresh"
+                                class="btn btn-success glyphicon glyphicon-plus "></button>
+                           <button type="button" class=" btn btn-link glyphicon glyphicon-refresh"
                                    id="crefresh"></button>
                     </span>
-                </div>
-                <div class="panel-body">
+                <div class="panel-heading">
+                    CHATROOMS</div>
+                <!--</div>-->
+                <div id="leftbody" class="panel-body">
                     <ul id="chatrooms" class="chat">
                     </ul>
                 </div>
@@ -62,19 +62,25 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-3">
+
+        <div class="col-xs-8">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <strong>
-                        <div>MESSAGE BOX</div>
+                        MESSAGES
                     </strong>
+                    <span class="pull-right">
+                    <input type="image" value="button" class="btn btn-link " id="clear"
+                           src="/pictures/images/emoji/x.png" style="height:30px;">
+                    </span>
+
                 </div>
-                <div class="panel-footer input-group-lg">
+                <div id="ftr1" class="panel-footer input-group-lg">
                     <div id="messageshow" style=" overflow-y: scroll; max-height: 200px; background: white; "
                          class="panel-body"
                          contenteditable></div>
                 </div>
-                <div class="panel-footer">
+                <div id="ftr2" class="panel-footer">
                     <div class="input-group-sm text-center">
                             <span class="input-group-btn">
                                  <form id="message-form" class="form-horizontal">
@@ -87,21 +93,7 @@
                             </span>
                     </div>
                 </div>
-            </div>
 
-        </div>
-        <div class="col-xs-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <strong>
-                        MESSAGES
-                    </strong>
-                    <span class="pull-right">
-                    <input type="image" value="button" class="btn btn-link " id="clear"
-                           src="/pictures/images/emoji/x.png" style="height:30px;">
-                    </span>
-
-                </div>
                 <div id="body" class="panel-body">
                     <ul id="messages" class="chat"></ul>
                 </div>
