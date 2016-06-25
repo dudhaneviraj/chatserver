@@ -71,7 +71,8 @@ form.onsubmit = function (e) {
     if (message == "/leave")
         room = "";
 
-    socket.send(prefix + message);
+    console.log(prefix+message)
+    socket.send(prefix +" "+ message);
 
     emojify.run(messagesList);
 
@@ -229,7 +230,7 @@ function renderUsers() {
 
     userList.innerHTML += temp
     if (isSelected) {
-        prefix = "/user" + selected;
+        prefix = "/user " + selected;
         userStatus.innerHTML = '<strong>USERS</strong>' + '<span class="pull-right">CURRENT: ' + selected + '</span>';
     } else {
         prefix = ""
@@ -239,14 +240,14 @@ function renderUsers() {
 
 userList.onchange = function () {
     prefix = document.querySelector('input[name = "usr"]:checked').value;
-
-    selected = prefix
-    if (prefix.trim().length == 0) {
+    if (prefix!=null && prefix.trim().length == 0) {
         prefix = "";
         userStatus.innerHTML = 'Users' + '<span class="pull-right">Current: Group</span>';
     } else {
         userStatus.innerHTML = 'Users' + '<span class="pull-right">Current: ' + prefix + '</span>';
+        selected = prefix
         prefix = '/user ' + prefix + " ";
+
     }
 }
 
