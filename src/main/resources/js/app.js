@@ -17,44 +17,27 @@ var loginBtn = document.getElementById("loginBtn");
 var userStatus = document.getElementById('userStatus');
 var messageShow=document.getElementById("messageshow")
 var navStatus=document.getElementById("navStatus")
-var isLoggedIn=false;
-var room = "";
-var prefix= "";
-var socket;
-var username="";
-var ip = window.location.hostname;
-var address = ip + ":8000"
 var sendBtn=document.getElementById("send")
-var selected="";
 var wall = document.getElementById("body");
 var leftBody=document.getElementById("leftbody")
 var ftr1=document.getElementById("ftr1")
 var ftr2=document.getElementById("ftr2")
+var isLoggedIn=false;
+var ip = window.location.hostname;
+var address = ip + ":8000"
+var selected="";
+var room = "";
+var prefix= "";
+var socket;
+var username="";
+
 var ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
 wall.setAttribute("style","height:"+ht+"px;")
-
-
-function onElementHeightChange(elm, callback){
-    var lastHeight = elm.clientHeight, newHeight;
-    (function run(){
-        newHeight = elm.clientHeight;
-        if( lastHeight != newHeight )
-            callback();
-        lastHeight = newHeight;
-
-        if( elm.onElementHeightChangeTimer )
-            clearTimeout(elm.onElementHeightChangeTimer);
-
-        elm.onElementHeightChangeTimer = setTimeout(run, 200);
-    })();
-}
 
 onElementHeightChange(document.body, function(){
     ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
     wall.setAttribute("style","height:"+ht+"px;")
 });
-
-
 
 createSocket();
 
@@ -91,11 +74,11 @@ form.onsubmit = function (e) {
     socket.send(prefix + message);
  
     emojify.run(messagesList);
+
     messageField.value = '';
 
     return false;
 };
-
 
 chatRoomCreateButton.onclick = function (e) {
     e.preventDefault();
@@ -122,7 +105,6 @@ openCloseBtn.onclick = function (e) {
     }
     return false;
 };
-
 
 clearBtn.onclick = function (e) {
     e.preventDefault();
@@ -202,7 +184,6 @@ createBtn.onclick = function (e) {
     return;
 };
 
-
 function renderUsers() {
     if (selected != "")
         selected = document.querySelector('input[name = "usr"]:checked').value;
@@ -257,6 +238,7 @@ function renderUsers() {
         userStatus.innerHTML='<strong>USERS</strong>' + '<span class="pull-right">CURRENT: Group</span>';
     }
 }
+
 userList.onchange=function () {
     prefix = document.querySelector('input[name = "usr"]:checked').value;
 
@@ -269,8 +251,6 @@ userList.onchange=function () {
         prefix = '/user ' + prefix + " ";
     }
 }
-
-
 
 function getTime() {
     var currentTime = new Date()
@@ -307,6 +287,7 @@ loginBtn.onclick = function (e) {
 
     return;
 };
+
 function createSocket() {
     socket = new WebSocket("ws://" + ip + ":8000" + "/socket");
 
@@ -333,7 +314,6 @@ function createSocket() {
                 openCloseBtn.disabled=false;
                 $("#loginModal").modal('hide')
                 navStatus.innerHTML='   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  '+username+'</span>';
-                // socketStatus.innerHTML+='   <span class="glyphicon glyphicon-user">  '+username+'</span>';
             }
             else
             {
@@ -377,6 +357,21 @@ function createSocket() {
     };
 }
 
+function onElementHeightChange(elm, callback){
+    var lastHeight = elm.clientHeight, newHeight;
+    (function run(){
+        newHeight = elm.clientHeight;
+        if( lastHeight != newHeight )
+            callback();
+        lastHeight = newHeight;
+
+        if( elm.onElementHeightChangeTimer )
+            clearTimeout(elm.onElementHeightChangeTimer);
+
+        elm.onElementHeightChangeTimer = setTimeout(run, 200);
+    })();
+}
+
 login.addEventListener('keypress', function(event) {
     if (event.keyCode == 13) {
         event.preventDefault();
@@ -391,5 +386,6 @@ createField.addEventListener('keypress', function(event) {
         createBtn.click();
     }
 });
+
 
 

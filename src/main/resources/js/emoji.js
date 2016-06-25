@@ -1,4 +1,4 @@
-alias={
+alias = {
     0: '+1',
     1: '-1',
     2: '100',
@@ -899,13 +899,38 @@ $("#messageshow").emoji({
 });
 
 
+$('#messageshow').bind('keydown', function (event) {
 
-
-$('#messageshow').bind('keydown', function(event) {
-    if(event.keyCode==13)
-    {
-        messageField.value=messageShow.innerHTML;
-        messageShow.innerHTML="";
+    if (messageShow.innerHTML.charAt(messageShow.innerHTML.length - 1) == ':')
+        emojify.run(messageShow)
+    else if (event.keyCode == 13) {
+        messageField.value = messageShow.innerHTML;
+        messageField.value = parsedData()
+        messageShow.innerHTML = "";
         sendBtn.click();
     }
+
 });
+
+$('div[contenteditable]').keydown(function (e) {
+    if (e.keyCode === 13)
+        return false;
+});
+
+function parsedData() {
+    var data = messageShow.innerHTML;
+    var emojiList = messageShow.getElementsByTagName('img');
+    if (emojiList.length > 0) {
+        for (var i = 0; i < emojiList.length; i++) {
+                var element = emojiList[i];
+                var src = element.src;
+                var name = element.src.substring(src.lastIndexOf("/") + 1, src.length).split(".", 1)[0];
+                if (name in alias)
+                    data = data.replace(emojiList[i].outerHTML, " :" + alias[name] + ": ")
+        }
+    }
+    data = data.replace(new RegExp("&nbsp;", "g"), ' ')
+    // data=data.replace(new RegExp("<div>", "g"), '')
+    data = data.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    return data;
+}
