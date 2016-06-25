@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Chat Server</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/template.css" rel="stylesheet"/>
+    <link href="/css/chat.css" rel="stylesheet"/>
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.4/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet"/>
+    <link href="/css/jquery.emoji.css" rel="stylesheet"/>
+    <link rel="shortcut icon" href="/pictures/chat.png">
+
+</head>
+<body background="/pictures/back.png">
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">CHAT SERVER</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+            <ul class="nav navbar-nav">
+                <li><a href="#"><button type="button" class="btn btn-danger glyphicon glyphicon-remove-sign"
+                            id="openclose"></button>
+                </a></li>
+                <li><a href="#"><div style="font-size:2.0em;" id="status">Connecting...</div>
+                </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#"><div id="navStatus"></div>
+                </a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="fill">
+    <div class="row">
+        <div class="col-xs-2">
+            <div class="panel panel-primary">
+                    <span class="pull-right">
+                        <button type="button" id="chatroomCreate"
+                                class="btn btn-success glyphicon glyphicon-plus "></button>
+                           <button type="button" class=" btn btn-link glyphicon glyphicon-refresh"
+                                   id="crefresh"></button>
+                    </span>
+                <div class="panel-heading">
+                    CHATROOMS</div>
+                <!--</div>-->
+                <div id="leftbody" class="panel-body">
+                    <ul id="chatrooms" class="chat">
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>
+                        MESSAGES
+                    </strong>
+                    <span class="pull-right">
+                    <input type="image" value="button" class="btn btn-link " id="clear"
+                           src="/pictures/images/emoji/x.png" style="height:30px;">
+                    </span>
+
+                </div>
+                <div id="ftr1" class="panel-footer input-group-lg">
+                    <div id="messageshow" style=" overflow-y: scroll; max-height: 200px; background: white; "
+                         class="panel-body"
+                         contenteditable></div>
+                </div>
+                <div id="ftr2" class="panel-footer">
+                    <div class="input-group-sm text-center">
+                            <span class="input-group-btn">
+                                 <form id="message-form" class="form-horizontal">
+                                           <input id="message" type="hidden">
+                                        <input type="submit" class="hidden btn-sm pull-left" id="send">Send</input>
+                                        <input type="image" value="" class="btn-sm btn-link pull-left" id="emoji"
+                                               src="/pictures/images/emoji/smiley.png" style="height:30px;">
+
+                                 </form>
+                            </span>
+                    </div>
+                </div>
+
+                <div id="body" class="panel-body">
+                    <ul id="messages" class="chat"></ul>
+                </div>
+                <div class="panel-footer">
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="panel panel-primary">
+                     <span class="pull-left">
+                         <button type="button" class="btn btn-link glyphicon glyphicon-refresh"
+                             id="urefresh"></button>
+                     </span>
+                <div id="userStatus" class="panel-heading"><strong>USERS</strong></div>
+                <div class="panel-body">
+                    <ul id="users" class="chat"></ul>
+                </div>
+
+                <div class="panel-footer">
+                    <div class="input-group text-center">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row"></div>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Create New Chat Room</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="chatroom">Enter Name:</label>
+                        <input type="text" class="form-control" maxlength="20" id="chatroom">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="create">Create</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="loginModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <p id="loginStatus" class="text-danger"></p>
+                        <label for="login">Enter Username:</label>
+                        <input type="text" class="form-control" maxlength="20" id="login">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" id="loginBtn">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/jquery-2.1.4.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/emojify.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/jquery.emoji.min.js"></script>
+<script src="/js/jquery.mousewheel.js"></script>
+<script src="/js/jquery.mCustomScrollbar.min.js"></script>
+<script src="/js/emoji.js"></script>
+</body>
+</html>
