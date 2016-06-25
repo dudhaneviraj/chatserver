@@ -144,11 +144,11 @@ function renderChatrooms() {
     var count=0;
     $.each(result, function(k, v) {
         if(k==room)
-            chatRoomList.innerHTML += '<li class="left clearfix"><span class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
+            chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
                 '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+k+'<span class="pull-right">'+v+' Users</span></strong>' +
                 '</div><span  class="pull-right">Current</span> </div></li>';
         else
-            chatRoomList.innerHTML += '<li class="left clearfix"><span  class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
+            chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
                 '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+k+'<span class="pull-right">'+v+' Users</span></strong>' +
                 '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send'+k+'">Join</button> </div></li>';
 
@@ -332,7 +332,7 @@ function createSocket() {
                 isLoggedIn = true;
                 openCloseBtn.disabled=false;
                 $("#loginModal").modal('hide')
-                navStatus.innerHTML='   <span class="glyphicon glyphicon-user">  '+username+'</span>';
+                navStatus.innerHTML='   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  '+username+'</span>';
                 // socketStatus.innerHTML+='   <span class="glyphicon glyphicon-user">  '+username+'</span>';
             }
             else
