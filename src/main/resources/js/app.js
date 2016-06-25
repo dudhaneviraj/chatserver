@@ -70,8 +70,7 @@ form.onsubmit = function (e) {
 
     if (message == "/leave")
         room = "";
-
-    console.log(prefix+message)
+    
     socket.send(prefix +" "+ message);
 
     emojify.run(messagesList);
