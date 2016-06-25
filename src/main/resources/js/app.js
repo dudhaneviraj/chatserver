@@ -15,28 +15,28 @@ var login = document.getElementById("login");
 var loginStatus = document.getElementById("loginStatus");
 var loginBtn = document.getElementById("loginBtn");
 var userStatus = document.getElementById('userStatus');
-var messageShow=document.getElementById("messageshow")
-var navStatus=document.getElementById("navStatus")
-var sendBtn=document.getElementById("send")
+var messageShow = document.getElementById("messageshow")
+var navStatus = document.getElementById("navStatus")
+var sendBtn = document.getElementById("send")
 var wall = document.getElementById("body");
-var leftBody=document.getElementById("leftbody")
-var ftr1=document.getElementById("ftr1")
-var ftr2=document.getElementById("ftr2")
-var isLoggedIn=false;
+var leftBody = document.getElementById("leftbody")
+var ftr1 = document.getElementById("ftr1")
+var ftr2 = document.getElementById("ftr2")
+var isLoggedIn = false;
 var ip = window.location.hostname;
 var address = ip + ":8000"
-var selected="";
+var selected = "";
 var room = "";
-var prefix= "";
+var prefix = "";
 var socket;
-var username="";
+var username = "";
 
-var ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
-wall.setAttribute("style","height:"+ht+"px;")
+var ht = leftBody.clientHeight - ftr1.clientHeight - ftr2.clientHeight;
+wall.setAttribute("style", "height:" + ht + "px;")
 
-onElementHeightChange(document.body, function(){
-    ht=leftBody.clientHeight-ftr1.clientHeight-ftr2.clientHeight;
-    wall.setAttribute("style","height:"+ht+"px;")
+onElementHeightChange(document.body, function () {
+    ht = leftBody.clientHeight - ftr1.clientHeight - ftr2.clientHeight;
+    wall.setAttribute("style", "height:" + ht + "px;")
 });
 
 createSocket();
@@ -46,14 +46,14 @@ loadLoginModal()
 emojify.setConfig({
 
     // emojify_tag_type : 'select',// Only run emojify.js on this element
-    only_crawl_id    : null,            // Use to restrict where emojify.js applies
-    img_dir          : '/pictures/images/emoji',  // Directory for emoji images
-    ignored_tags     : {                // Ignore the following tags
-        'SCRIPT'  : 1,
+    only_crawl_id: null,            // Use to restrict where emojify.js applies
+    img_dir: '/pictures/images/emoji',  // Directory for emoji images
+    ignored_tags: {                // Ignore the following tags
+        'SCRIPT': 1,
         'TEXTAREA': 1,
-        'A'       : 1,
-        'PRE'     : 1,
-        'CODE'    : 1
+        'A': 1,
+        'PRE': 1,
+        'CODE': 1
     }
 });
 
@@ -61,18 +61,18 @@ form.onsubmit = function (e) {
     e.preventDefault();
 
     var message = messageField.value;
-    
-    if(message==null || message.length==0)
+
+    if (message == null || message.length == 0)
         return;
-    
-    if(message.indexOf("/join")==0) 
+
+    if (message.indexOf("/join") == 0)
         room = message.split(" ", 2)[1].trim();
- 
-    if(message == "/leave") 
+
+    if (message == "/leave")
         room = "";
 
     socket.send(prefix + message);
- 
+
     emojify.run(messagesList);
 
     messageField.value = '';
@@ -89,16 +89,15 @@ chatRoomCreateButton.onclick = function (e) {
 function loadLoginModal() {
     $("#loginModal").modal({backdrop: 'static', keyboard: false})
     login.focus();
-    openCloseBtn.disabled=true;
+    openCloseBtn.disabled = true;
 }
 
 openCloseBtn.onclick = function (e) {
     e.preventDefault();
-    if(socket.readyState!=1)
-    {
+    if (socket.readyState != 1) {
         createSocket();
-        messagesList.innerHTML="";
-        openCloseBtn.className="btn btn-danger glyphicon glyphicon-remove-sign";
+        messagesList.innerHTML = "";
+        openCloseBtn.className = "btn btn-danger glyphicon glyphicon-remove-sign";
     }
     else {
         socket.close();
@@ -120,33 +119,33 @@ crefresh.onclick = function (e) {
 };
 
 function renderChatrooms() {
-    var data=httpGet("/api/chatRooms")
-    chatRoomList.innerHTML="";
+    var data = httpGet("/api/chatRooms")
+    chatRoomList.innerHTML = "";
     var result = $.parseJSON(data);
-    var count=0;
-    $.each(result, function(k, v) {
-        if(k==room)
+    var count = 0;
+    $.each(result, function (k, v) {
+        if (k == room)
             chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
-                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+k+'<span class="pull-right">'+v+' Users</span></strong>' +
+                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">' + k + '<span class="pull-right">' + v + ' Users</span></strong>' +
                 '</div><span  class="pull-right">Current</span> </div></li>';
         else
             chatRoomList.innerHTML += '<li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left 	glyphicon glyphicon-leaf">' +
-                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">'+k+'<span class="pull-right">'+v+' Users</span></strong>' +
-                '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send'+k+'">Join</button> </div></li>';
+                '</span><div class="chat-body clearfix"><div class="header"><strong class="primary-font" style="word-wrap: break-word;">' + k + '<span class="pull-right">' + v + ' Users</span></strong>' +
+                '</div><button type="submit" class="btn btn-primary pull-right joinClass" id="send' + k + '">Join</button> </div></li>';
 
         count++;
     });
 
-    if(count==0)
+    if (count == 0)
         chatRoomList.innerHTML = '<ul class="chat"><li class="clearfix"><p>No Chatrooms Active</p></div></li></ul>';
 
     var classname = document.getElementsByClassName("joinClass");
 
-    var join = function(e) {
+    var join = function (e) {
         e.preventDefault();
-        var eventid=e.currentTarget.id+"";
-        if(eventid.indexOf("send")==0) {
-            messagesList.innerHTML="";
+        var eventid = e.currentTarget.id + "";
+        if (eventid.indexOf("send") == 0) {
+            messagesList.innerHTML = "";
             eventid = eventid.replace("send", "");
             socket.send("/join " + eventid);
             room = eventid + "";
@@ -170,12 +169,12 @@ urefresh.onclick = function (e) {
 createBtn.onclick = function (e) {
     e.preventDefault();
 
-    if(createField.value.length==0)
+    if (createField.value.length == 0)
         return;
 
-    room=createField.value;
+    room = createField.value;
 
-    socket.send("/join "+createField.value);
+    socket.send("/join " + createField.value);
 
     $("#myModal").modal("hide")
 
@@ -232,22 +231,21 @@ function renderUsers() {
     if (isSelected) {
         prefix = "/user" + selected;
         userStatus.innerHTML = '<strong>USERS</strong>' + '<span class="pull-right">CURRENT: ' + selected + '</span>';
-    } else
-    {
+    } else {
         prefix = ""
-        userStatus.innerHTML='<strong>USERS</strong>' + '<span class="pull-right">CURRENT: Group</span>';
+        userStatus.innerHTML = '<strong>USERS</strong>' + '<span class="pull-right">CURRENT: Group</span>';
     }
 }
 
-userList.onchange=function () {
+userList.onchange = function () {
     prefix = document.querySelector('input[name = "usr"]:checked').value;
 
-    selected=prefix
-    if(prefix.trim().length==0) {
+    selected = prefix
+    if (prefix.trim().length == 0) {
         prefix = "";
-        userStatus.innerHTML='Users' + '<span class="pull-right">Current: Group</span>';
-    }else {
-        userStatus.innerHTML='Users' + '<span class="pull-right">Current: '+prefix+'</span>';
+        userStatus.innerHTML = 'Users' + '<span class="pull-right">Current: Group</span>';
+    } else {
+        userStatus.innerHTML = 'Users' + '<span class="pull-right">Current: ' + prefix + '</span>';
         prefix = '/user ' + prefix + " ";
     }
 }
@@ -257,32 +255,31 @@ function getTime() {
     var month = currentTime.getMonth() + 1
     var day = currentTime.getDate()
     var year = currentTime.getFullYear()
-    var hours=currentTime.getHours();
-    var minutes=currentTime.getMinutes();
-    var tm="";
-    if(hours>12)
-        tm="PM";
+    var hours = currentTime.getHours();
+    var minutes = currentTime.getMinutes();
+    var tm = "";
+    if (hours > 12)
+        tm = "PM";
     else
-        tm="AM";
-    hours=hours%12;
-    hours=(hours<10)?'0'+hours:hours;
-    month=(month<10)?'0'+month:month;
-    day=(day<10)?'0'+day:day;
-    minutes=(minutes<10)?'0'+minutes:minutes;
-    return hours+":"+minutes+" "+tm+" "+month + "/" + day + "/" + year;
+        tm = "AM";
+    hours = hours % 12;
+    hours = (hours < 10) ? '0' + hours : hours;
+    month = (month < 10) ? '0' + month : month;
+    day = (day < 10) ? '0' + day : day;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    return hours + ":" + minutes + " " + tm + " " + month + "/" + day + "/" + year;
 }
 
-function httpGet(theUrl)
-{
+function httpGet(theUrl) {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
     return xmlHttp.responseText;
 }
 
 loginBtn.onclick = function (e) {
     e.preventDefault();
-    username=login.value
+    username = login.value
     socket.send(login.value);
 
     return;
@@ -297,40 +294,38 @@ function createSocket() {
 
     socket.onopen = function (event) {
         socketStatus.innerHTML = 'Connected to: ' + address
-        isLoggedIn=false;
-        chatRoomList.innerHTML="";
-        userList.innerHTML="";
-        messagesList.innerHTML="";
+        isLoggedIn = false;
+        chatRoomList.innerHTML = "";
+        userList.innerHTML = "";
+        messagesList.innerHTML = "";
         loadLoginModal()
     };
 
     socket.onmessage = function (event) {
         var result = $.parseJSON(event.data);
 
-        if(!isLoggedIn)
-        {
-            if(result["message"].indexOf('WELCOME')==0) {
+        if (!isLoggedIn) {
+            if (result["message"].indexOf('WELCOME') == 0) {
                 isLoggedIn = true;
-                openCloseBtn.disabled=false;
+                openCloseBtn.disabled = false;
                 $("#loginModal").modal('hide')
-                navStatus.innerHTML='   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  '+username+'</span>';
+                navStatus.innerHTML = '   <span style="font-size:2.0em;" class="glyphicon glyphicon-user">  ' + username + '</span>';
             }
-            else
-            {
-                loginStatus.innerHTML=result["message"];
+            else {
+                loginStatus.innerHTML = result["message"];
                 return;
             }
         }
-        if(result['from']=="YOU")
-            messagesList.innerHTML='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-upload">' +
-                '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
-                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
-                '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'+messagesList.innerHTML
+        if (result['from'] == "YOU")
+            messagesList.innerHTML = '<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-upload">' +
+                '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: ' + result['from'] +
+                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + getTime() + '</small></div>' +
+                '<p>To: ' + result['to'] + '</p><p>Message:<br> ' + result['message'] + '</p></div></li></ul>' + messagesList.innerHTML
         else
-            messagesList.innerHTML='<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-download">' +
-            '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: '+result['from']+
-                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>'+getTime()+'</small></div>'+
-                '<p>To: '+result['to']+'</p><p>Message:<br> '+result['message']+'</p></div></li></ul>'+messagesList.innerHTML
+            messagesList.innerHTML = '<ul class="chat"><li class="left clearfix"><span style="font-size:3.0em;" class="chat-img pull-left glyphicon glyphicon-cloud-download">' +
+                '</span><div class="chat-body clearfix" style="word-wrap: break-word;"><div class="header"><strong class="primary-font">From: ' + result['from'] +
+                '</strong> <small class="pull-right text-muted"><span class="glyphicon glyphicon-time"></span>' + getTime() + '</small></div>' +
+                '<p>To: ' + result['to'] + '</p><p>Message:<br> ' + result['message'] + '</p></div></li></ul>' + messagesList.innerHTML
         renderChatrooms()
         renderUsers()
         emojify.run(document.getElementById('messages'));
@@ -342,37 +337,37 @@ function createSocket() {
 
     socket.onclose = function (event) {
         socketStatus.innerHTML = 'Disconnected from WebSocket.';
-        navStatus.innerHTML="";
+        navStatus.innerHTML = "";
         socketStatus.className = '';
-        messagesList.innerHTML="";
-        chatRoomList.innerHTML="";
-        userList.innerHTML="";
-        login.innerHTML="";
-        userStatus.innerHTML="Users"
-        isLoggedIn=false;
-        username="";
-        room="";
-        prefix="";
-        openCloseBtn.className="btn btn-success glyphicon glyphicon-plus-sign";
+        messagesList.innerHTML = "";
+        chatRoomList.innerHTML = "";
+        userList.innerHTML = "";
+        login.innerHTML = "";
+        userStatus.innerHTML = "Users"
+        isLoggedIn = false;
+        username = "";
+        room = "";
+        prefix = "";
+        openCloseBtn.className = "btn btn-success glyphicon glyphicon-plus-sign";
     };
 }
 
-function onElementHeightChange(elm, callback){
+function onElementHeightChange(elm, callback) {
     var lastHeight = elm.clientHeight, newHeight;
-    (function run(){
+    (function run() {
         newHeight = elm.clientHeight;
-        if( lastHeight != newHeight )
+        if (lastHeight != newHeight)
             callback();
         lastHeight = newHeight;
 
-        if( elm.onElementHeightChangeTimer )
+        if (elm.onElementHeightChangeTimer)
             clearTimeout(elm.onElementHeightChangeTimer);
 
         elm.onElementHeightChangeTimer = setTimeout(run, 200);
     })();
 }
 
-login.addEventListener('keypress', function(event) {
+login.addEventListener('keypress', function (event) {
     if (event.keyCode == 13) {
         event.preventDefault();
         loginBtn.click();
@@ -380,7 +375,7 @@ login.addEventListener('keypress', function(event) {
 });
 
 
-createField.addEventListener('keypress', function(event) {
+createField.addEventListener('keypress', function (event) {
     if (event.keyCode == 13) {
         event.preventDefault();
         createBtn.click();

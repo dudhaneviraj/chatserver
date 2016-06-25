@@ -922,11 +922,11 @@ function parsedData() {
     var emojiList = messageShow.getElementsByTagName('img');
     if (emojiList.length > 0) {
         for (var i = 0; i < emojiList.length; i++) {
-                var element = emojiList[i];
-                var src = element.src;
-                var name = element.src.substring(src.lastIndexOf("/") + 1, src.length).split(".", 1)[0];
-                if (name in alias)
-                    data = data.replace(emojiList[i].outerHTML, " :" + alias[name] + ": ")
+            var element = emojiList[i];
+            var src = element.src;
+            var name = element.src.substring(src.lastIndexOf("/") + 1, src.length).split(".", 1)[0];
+            if (name in alias)
+                data = data.replace(emojiList[i].outerHTML, " :" + alias[name] + ": ")
         }
     }
     data = data.replace(new RegExp("&nbsp;", "g"), ' ')
