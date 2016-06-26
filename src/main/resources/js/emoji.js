@@ -905,7 +905,7 @@ $('#messageshow').bind('keydown', function (event) {
         emojify.run(messageShow)
     else if (event.keyCode == 13) {
         messageField.value = messageShow.innerHTML;
-        messageField.value = parsedData()
+        // messageField.value = parsedData()
         messageShow.innerHTML = "";
         sendBtn.click();
     }
@@ -931,6 +931,6 @@ function parsedData() {
     }
     data = data.replace(new RegExp("&nbsp;", "g"), ' ')
     // data=data.replace(new RegExp("<div>", "g"), '')
-    data = data.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+    // data = data.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
     return data;
 }

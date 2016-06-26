@@ -29,6 +29,8 @@ public class TcpMessageUtil {
     }
 
     public void write(Channel ctx, String msg) {
+        msg=msg.replaceAll("&lt;","<");
+        msg=msg.replaceAll("&gt;",">");
         ctx.writeAndFlush(msg + "\n");
     }
 
