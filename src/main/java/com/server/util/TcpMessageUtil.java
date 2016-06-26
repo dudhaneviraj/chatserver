@@ -56,12 +56,23 @@ public class TcpMessageUtil {
         getUsers(user, ctx);
         write(ctx, "END OF LIST.");
 
-        webMessageUtil.broadCastSystemMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName(),"REFRESH_USER");
-//        broadCastTCPMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
-         broadCastMessage(webMessageUtil, user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
-
+        webMessageUtil.broadCastSystemMessage(user, ctx, "USER JOINED ROOM: "  + user.getUserName(),"REFRESH_USER");
+        broadCastTCPMessage(user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
+//         broadCastMessage(webMessageUtil, user, ctx, "* NEW USER JOINED " + user.getChatRoom().getName() + ": " + user.getUserName());
     }
 
+    public void leaveChatRoom(WebMessageUtil webMessageUtil, User user, ChannelHandlerContext ctx) {
+        if (user.getChatRoom() != null) {
+//            broadCast(webMessageUtil, user, ctx, "GOTTA GO!");
+
+            webMessageUtil.broadCastSystemMessage(user, ctx, "USER LEFT CHATROOM: " + user.getUserName(),"REFRESH_USER");
+            broadCastTCPMessage(user, ctx, "* USER HAS LEFT CHAT: " + user.getUserName());
+
+            user.getChatRoom().removeUser(user.getUserName(), ctx.channel(), false);
+            MANAGER.removeChatRoom(user.getChatRoom().getName());
+            user.leaveChatRoom();
+        }
+    }
 
     public void broadCastTCPMessage( User user, ChannelHandlerContext ctx, String msg) {
         ChannelGroup channelGroup =  user.getChatRoom().getTCPChannels();
@@ -73,19 +84,6 @@ public class TcpMessageUtil {
                 write(c, "[USER: YOU] " + "[ROOM: " + user.getChatRoom().getName() + "] " + msg + " (** THIS IS YOU)");
         });
     }
-
-    public void leaveChatRoom(WebMessageUtil webMessageUtil, User user, ChannelHandlerContext ctx) {
-        if (user.getChatRoom() != null) {
-            broadCast(webMessageUtil, user, ctx, "GOTTA GO!");
-            broadCastMessage(webMessageUtil, user, ctx, "* USER HAS LEFT CHAT: " + user.getUserName());
-            webMessageUtil.broadCastSystemMessage(user, ctx, "USER_LEFT " + user.getChatRoom().getName() + ": " + user.getUserName(),"REFRESH_USER");
-
-            user.getChatRoom().removeUser(user.getUserName(), ctx.channel(), false);
-            MANAGER.removeChatRoom(user.getChatRoom().getName());
-            user.leaveChatRoom();
-        }
-    }
-
     public void broadCastMessage(WebMessageUtil webMessageUtil, User user, ChannelHandlerContext ctx, String msg) {
         ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
 
@@ -136,7 +134,7 @@ public class TcpMessageUtil {
         ChannelGroup channelGroup = user.getChatRoom().getWebChannels();
         channelGroup.stream().forEach(c -> {
             if (c.id().asLongText().equals(id.asLongText()) && c != ctx.channel())
-                webMessageUtil.write(c, user.getUserName(), user.getChatRoom().getName(), msg);
+                webMessageUtil.write(c, user.getUserName(),  "YOU", msg);
         });
 
         channelGroup = user.getChatRoom().getTCPChannels();
@@ -145,7 +143,7 @@ public class TcpMessageUtil {
             if (c.id().asLongText().equals(id.asLongText()) && c != ctx.channel())
                 write(c, "[USER: " + user.getUserName() + "] " + "[ROOM: " + user.getChatRoom().getName() + "] [PERSONAL]" + msg);
         });
-        write(ctx, "[USER: YOU] [ROOM: " + user.getChatRoom() + "][TO: " + username + "][PERSONAL] " + msg);
+        write(ctx, "[USER: YOU] [ROOM: " + user.getChatRoom().getName() + "][TO: " + username + "][PERSONAL] " + msg);
     }
 
     public void getUsers(User user, ChannelHandlerContext ctx) {

@@ -22,6 +22,7 @@ var wall = document.getElementById("body");
 var leftBody = document.getElementById("leftbody")
 var ftr1 = document.getElementById("ftr1")
 var ftr2 = document.getElementById("ftr2")
+var system_message=document.getElementById("system_message")
 var isLoggedIn = false;
 var ip = window.location.hostname;
 var address = ip + ":8000"
@@ -305,7 +306,8 @@ function createSocket() {
         var result = $.parseJSON(event.data);
 
         if (!isLoggedIn) {
-            if (result["message"].indexOf('WELCOME') == 0) {
+            console.log(result["type"])
+            if (result["type"] == "SUCCESS") {
                 isLoggedIn = true;
                 openCloseBtn.disabled = false;
                 $("#loginModal").modal('hide')
@@ -321,12 +323,15 @@ function createSocket() {
 
         if(result['from'] == "SYSTEM")
         {
+            system_message.innerHTML=result['message']
+            $('#system_message').fadeIn().fadeOut(2000)
+
             if(result['type']=="REFRESH_USER")
             {
                 renderChatrooms()
                 renderUsers();
-                return;
             }
+            return;
         }
 
         if (result['from'] == "YOU")
